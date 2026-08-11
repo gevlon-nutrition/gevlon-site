@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Santé métabolique & régime cétogène — Gevlon Académie</title>
+<meta name="description" content="Formation gratuite Gevlon : santé métabolique et régime cétogène, protocole AfroKeto™.">
+<link rel="icon" id="favicon" href="">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#00308F; --navy-deep:#001F5C; --navy-soft:#EAF0FB;
+    --orange:#F9921C; --orange-text:#B5650E;
+    --ink:#131C33; --ink-soft:#54617A; --white:#FFFFFF; --paper:#F6F8FC;
+    --green:#1a7a3d; --green-soft:#DCF5E3;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:'Inter',sans-serif;background:var(--paper);color:var(--ink);line-height:1.6;}
+  h1,h2,h3{font-family:'Fraunces',serif;font-weight:600;color:var(--navy-deep);}
+  a{color:inherit;}
+  .mono{font-family:'Space Grotesk',monospace;}
+
+  header{
+    position:sticky;top:0;z-index:40;background:rgba(246,248,252,0.95);backdrop-filter:blur(8px);
+    border-bottom:1px solid rgba(0,48,143,0.1);
+  }
+  .head-wrap{max-width:1240px;margin:0 auto;padding:0 24px;height:68px;display:flex;align-items:center;justify-content:space-between;}
+  .head-left{display:flex;align-items:center;gap:18px;}
+  .head-left img{height:28px;}
+  .back-link{font-size:0.85rem;font-weight:600;color:var(--ink-soft);display:flex;align-items:center;gap:6px;}
+  .back-link:hover{color:var(--navy);}
+  .head-progress{display:flex;align-items:center;gap:10px;font-size:0.8rem;color:var(--ink-soft);}
+  .head-bar{width:140px;height:7px;background:var(--navy-soft);border-radius:999px;overflow:hidden;}
+  .head-bar-fill{height:100%;background:var(--orange);width:0%;transition:width .4s ease;}
+
+  .layout{max-width:1240px;margin:0 auto;padding:32px 24px 80px;display:grid;grid-template-columns:290px 1fr;gap:32px;}
+  @media (max-width:900px){ .layout{grid-template-columns:1fr;} .sidebar{order:2;} }
+
+  .sidebar{
+    background:var(--white);border-radius:16px;padding:18px;border:1px solid rgba(0,48,143,0.08);
+    height:fit-content;position:sticky;top:88px;
+  }
+  .sidebar h4{font-size:0.75rem;text-transform:uppercase;letter-spacing:0.05em;color:var(--ink-soft);padding:6px 10px 12px;}
+  .mod-item{
+    display:flex;align-items:center;gap:12px;padding:12px 10px;border-radius:10px;cursor:pointer;
+    font-size:0.88rem;font-weight:600;color:var(--ink);transition:background .15s ease;
+  }
+  .mod-item:hover{background:var(--navy-soft);}
+  .mod-item.active{background:var(--navy);color:#fff;}
+  .mod-check{
+    width:24px;height:24px;border-radius:50%;flex-shrink:0;background:var(--navy-soft);color:var(--navy);
+    display:flex;align-items:center;justify-content:center;font-size:0.7rem;font-weight:700;font-family:'Space Grotesk',monospace;
+  }
+  .mod-item.active .mod-check{background:rgba(255,255,255,0.2);color:#fff;}
+  .mod-item.done .mod-check{background:var(--green);color:#fff;}
+  .mod-title{flex:1;}
+  .mod-sub{display:block;font-size:0.72rem;font-weight:500;color:var(--ink-soft);margin-top:2px;}
+  .mod-item.active .mod-sub{color:rgba(255,255,255,0.75);}
+
+  .main-panel{background:var(--white);border-radius:18px;padding:40px;border:1px solid rgba(0,48,143,0.08);}
+  .main-panel h2{font-size:1.5rem;margin-bottom:6px;}
+  .lesson-tag{font-size:0.78rem;font-weight:700;color:var(--orange-text);text-transform:uppercase;letter-spacing:0.04em;margin-bottom:8px;display:block;}
+
+  .video-box{
+    aspect-ratio:16/9;background:linear-gradient(135deg,var(--navy),var(--navy-deep));border-radius:14px;
+    display:flex;flex-direction:column;align-items:center;justify-content:center;color:#fff;margin:20px 0 28px;gap:10px;
+  }
+  .video-box .play{
+    width:56px;height:56px;border-radius:50%;background:rgba(255,255,255,0.15);
+    display:flex;align-items:center;justify-content:center;font-size:1.3rem;
+  }
+  .video-box .note{font-size:0.78rem;color:rgba(255,255,255,0.65);max-width:320px;text-align:center;padding:0 20px;}
+
+  .lesson-text p{color:var(--ink);font-size:0.98rem;margin-bottom:16px;}
+  .takeaways{background:var(--navy-soft);border-radius:12px;padding:22px 24px;margin:26px 0;}
+  .takeaways h4{font-size:0.85rem;text-transform:uppercase;letter-spacing:0.04em;color:var(--navy);margin-bottom:12px;}
+  .takeaways ul{padding-left:20px;}
+  .takeaways li{font-size:0.92rem;margin-bottom:8px;color:var(--ink);}
+
+  .disclaimer{font-size:0.78rem;color:var(--ink-soft);background:#FDF3E4;border:1px solid #F3D9A8;border-radius:10px;padding:12px 16px;margin:20px 0;}
+
+  .quiz{border-top:1px solid var(--navy-soft);padding-top:26px;margin-top:30px;}
+  .quiz h4{font-size:0.85rem;text-transform:uppercase;letter-spacing:0.04em;color:var(--ink-soft);margin-bottom:16px;}
+  .q-block{margin-bottom:22px;}
+  .q-text{font-weight:700;font-size:0.94rem;margin-bottom:10px;color:var(--navy-deep);}
+  .q-opt{
+    display:block;border:1.5px solid var(--navy-soft);border-radius:9px;padding:10px 14px;margin-bottom:8px;
+    font-size:0.88rem;cursor:pointer;transition:border-color .15s ease;
+  }
+  .q-opt:hover{border-color:var(--navy);}
+  .q-opt input{margin-right:10px;}
+  .q-opt.correct{border-color:var(--green);background:var(--green-soft);}
+  .q-opt.wrong{border-color:#E24B4A;background:#FCEBEB;}
+
+  .btn-primary{
+    background:var(--orange);color:var(--navy-deep);padding:13px 26px;border-radius:999px;border:none;
+    font-weight:700;font-size:0.9rem;cursor:pointer;transition:transform .15s ease;
+  }
+  .btn-primary:hover{transform:translateY(-2px);}
+  .btn-primary:disabled{opacity:0.5;cursor:not-allowed;transform:none;}
+  .btn-secondary{
+    background:transparent;color:var(--navy);padding:12px 24px;border-radius:999px;border:1.5px solid var(--navy);
+    font-weight:700;font-size:0.88rem;cursor:pointer;
+  }
+  .quiz-result{font-size:0.88rem;font-weight:700;margin:14px 0;padding:10px 14px;border-radius:9px;}
+  .quiz-result.pass{background:var(--green-soft);color:var(--green);}
+  .quiz-result.fail{background:#FCEBEB;color:#A32D2D;}
+
+  .cert-wrap{text-align:center;padding:20px 0;}
+  .cert-card{
+    border:3px solid var(--navy);border-radius:16px;padding:50px 40px;margin:20px auto;max-width:640px;
+    background:linear-gradient(160deg,#fff,var(--navy-soft));position:relative;
+  }
+  .cert-card .brand{font-family:'Fraunces',serif;font-weight:700;font-size:1.1rem;color:var(--navy);margin-bottom:26px;}
+  .cert-card .h{font-size:0.8rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--ink-soft);margin-bottom:14px;}
+  .cert-card .name{font-family:'Fraunces',serif;font-size:2rem;color:var(--navy-deep);margin-bottom:14px;}
+  .cert-card .course{font-size:1.05rem;color:var(--ink);margin-bottom:22px;}
+  .cert-card .meta{font-size:0.8rem;color:var(--ink-soft);}
+  .cert-name-input{margin:0 auto 20px;display:block;max-width:320px;width:100%;padding:12px 16px;border-radius:9px;border:1.5px solid var(--navy-soft);font-size:0.95rem;text-align:center;font-family:'Inter',sans-serif;}
+
+  @media print{
+    header, .sidebar, .quiz, .video-box, .lesson-text, .takeaways, .disclaimer, .cert-actions{display:none !important;}
+    .layout{display:block;padding:0;}
+    .main-panel{border:none;padding:0;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="head-wrap">
+    <div class="head-left">
+      <a href="index.html" class="back-link">← Accueil</a>
+      <img id="logoNav" alt="Gevlon">
+    </div>
+    <div class="head-progress">
+      <span id="progressLabel">0 / 8 modules</span>
+      <div class="head-bar"><div class="head-bar-fill" id="headBarFill"></div></div>
+    </div>
+  </div>
+</header>
+
+<div class="layout">
+  <nav class="sidebar" id="sidebar"></nav>
+  <main class="main-panel" id="mainPanel"></main>
+</div>
+
+<script>
+var GEVLON_LOGO = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAABLkAAAHSCAYAAAAAMBnzAAAmB0lEQVR4nO3da3LcOLIGUHrCC9LWvBJtzTvS/dG3ustyPfjAIzNxTsRETHS3SiSQBMCvQGrbAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA44+Pza/v4/Jp9GAAAAACz/W/2AXCScAsAAADgX0IuAAAAANITcmX0fReXXV0AAADA4oRcAAAAAKQn5MrGri0AAACAvwi5AAAAAEhPyAUAAABAekKuTF49qugxRgAAAGBhQi4AAAAA0hNyZWGnFgAAAMBTQi4AAAAA0hNyVWK3FwAAALAoIRcAAAAA6Qm5AAAAAEhPyJWBxxABAAAAXhJyVSMQAwAAABYk5AIAAAAgPSEXAAAAAOkJuaI78/ihRxYBAACAxQi5AAAAAEhPyAUAAABAekIuAAAAANITclXlvVwAAADAQoRcAAAAAKQn5KKfj88vO8oAAACAEYRclQmYAAAAgEUIuehP2AYAAAB0JuQCAAAAID0hV3V2UQEAAAALEHLRh3ANAAAAGEjItQKBEwAAAFCckIsxBG0AAABAR0IuAAAAANITcq1i5E4qu7YAAACAwYRcAAAAAKQn5FrJ7B1Ws38/AAAAUJaQi7YEWQAAAMAEQi4AAAAA0hNyRff714+mn2enFQAAAFCQkIt2BGgAAADAJEKuFQmjAAAAgGKEXLQhOAMAAAAmEnKtSigFAAAAFCLkyqD1y+dbE5gBAAAAkwm5VtYinBJwAQAAAAEIuVYnpAIAAAAKEHIBAAAAkJ6Qi/OO7gKL/m4xAAAAIC0hVxY9A6Izjyx6zBEAAAAIRMjFP4RWAAAAQGJCLo4TiAEAAADBCLky6f1Oqz3hlYALAAAACEjIxX5XAi4vnQcAAAA6EnLxJzu1AAAAgISEXPztUdAl/AIAAAACE3JlM+OxPwEXAAAAENzP2QdAUIItAAAAIBE7uQAAAABIT8iVUba/VJjteAEAAIB0hFwAAAAApCfkAgAAACA9IVdWHgEEAAAA+JeQi76EcQAAAMAAQq7MBEgAAAAA27YJuQAAAAAoQMhFP3aaAQAAAIMIuQAAAABIT8iVnd1SAAAAAEIuOhG+AQAAAAMJuSqIFihFOx4AAACgPCEXAAAAAOkJuaqwewoAAABYmJCLtoRtAAAAwARCLgAAAADSE3JVMnsX1ezfDwAAACxLyAUAAABAekIu2rCLCwAAAJhIyMV1Ai4AAABgMiFXJR+fX7MPAQAAAGAGIVcVswIuu7gAAACAAIRcFdjBBQAAACxOyJXdzIDLLi4AAAAgCCFXZnZwAQAAAGzbJuTKa3bAZRcXAAAAEIiQKyMBFwAAAMAfhFzZzA64Wvn4/CpzLgAAAMB0duRkEiEUarGL69F52B0GAAAAXGAnVxZVAq5nIpwfAAAAkJbdM9FFCX9aBVzvzseOLgAAAOAEO7kiixJwjbTiOQMAAACX2TUTVaSwZ9Qurh6/EwCA8SKtZV+x5gQoxU6uiCItCmZN/JHaAAAAAAhPyBWNcOc/H59f2gMAAADYQ8gVSbRAp+UurivnFq1dAAAAgHCEXFFEC3KiBFwtPwMAAAAoS8g1m0fy9tNOAAAAwBNCLv4W+a/MCLoAAACAB37OPoBlRQ1rWgdcPc7z9pmRwzgAAABgKDu5yCtqUAgAAAAMJ+QaLfI7uDLs4prxOwAAAIDwhFwjRQ5kMj/6F7ldAQAAgCGEXKNEDmJ6BFyjzzdy+wIAAADdCblGWC2AmXW+q7UzAAAA8C8hV2/Rg5fMjyk+Er29AQAAgC6EXD1FD1wqPKYY9RgAAACAoYRcvUQPWqrt4PouevsDAAAATQm5eogesPQKuKKdd7TjAQAAALoRcrW2arAS9byjHhcAAADQlJCrlY/PrxSBSvXHFB/J0C8AAADAJUKulawYcN0IugAAAKA0IddVdnDlCZCyHCcAAABwmJDriiyhiYDrP9mOFwAAANhFyHVWlrBk5UcUn8nSdwAAAMBuQq4zhCT56UMAAAAoRch1VKZwxC6u1zL1JQAAAPCSkOuITKHIqIAre5CWqU8BAACAp4Rce2UKQ0YHT4IuAAAAYDIh1x6ZQpDsgRMAAADACUKudwRc8X93C5n6GQAAAPiLkOuVTMFHhJApwjFckam/AQAAgD8IuZ7JFHhECpciHcsZmfodAAAA+JeQ6xFBxzWCLgAAAGAwIdd32QKOqIFS1OPaK1sdAAAAwOKEXPeyBRvZg6TostUDAAAALEzIdZMt0MgQcGU4xney1QUAAAAsSsi1bfmCjEzhUaZjBQAAANIScgm4eCdbjQAAAMCC1g65soUXWQOurMd9L1utAAAAwGLWDbmyhRbZg6Lsx79t+WoGAAAAFrJmyJUtrKgQEG1bnfMAAAAAwlkv5BJwzZX9fLLVDwAAACxirZArW0CRPRB6Jvt5ZasjAAAAWMA6IVe2YCJ7EFRdtnoCAACA4tYIubIFEisEXBXOMVtdAQAAQGH1Q65sQUSF8Gevlc4VAAAA6Kp2yCXg2m9WW2UPurLVGAAAABRVO+TKJHvYc0X2cxd0AQAAwHR1Qy7Bw3HaDAAAAEiqZsiVLazJvpOphextkK3mAAAAoJh6IVe2sCFCuBOlzSK0xRVR2hEAAAAWVCvkyhYyZA91esjeJtlqEAAAAIqoE3JlCxeihjkR2jFq2wAAAABh1Qi5IgQzR0QKcbK1XQbaFAAAAIbLH3JlChR+//oRKuCKLHs7ZapLAAAAKCB/yEV7UQKa7EEXAAAAMEzukCtKGPNO1B1cGdovYrvtlaF9AQAAoIi8IZcAoS/t24Z2BAAAgCFyhlxZgoOoO7i2LU8bblvu3VwAAADAEPlCrkzhTHaR2jpz0BWpHQEAAKCon7MP4JAsYUHmQAYAAAAgoTw7ubIEXBlkbcvM4WHWNgcAAIAkcoRcWQKCyO/gujnaltHaPnr7vhKtLQEAAKCQHCEXAAAAALwQP+TKsvslww6js20ZrQ8ytPUz0doSAAAAioj94vksgUDm0CWr379+pKkPYlE3MRg3j1updtXHPyL2ub7ZR99BzOtgFNfbOSvXTCTJ6zfuwWcp8CwF0KI9I55rljr5LmJbVpK1LlbiGnhM7b63Su1ErYVV2v+KqH23bWP7L3I73FPT12Tp50jU3HPqKb4E9RtzJ1eW4k7QwU19fH4td869aMs+sowduAbuqdtj7turag2pCSAyY9Q1K8xj1JWgfuOFXFkGzaAd+lCWNj3DY4tr0/dkpXbbSLDQglB8wcBZ5q0+zGNkFrR+44VcGQTqQLa8QZeF5nkZ+xvUbV9BF1qHRa8Tc1d++pAjoo9Jldza2vVJRoHqN07IlWUADdBph7RuVwsjZsoyTsA9dTteoIXWIWolP31IFWp5nqxzGGxbiPr936xfzAC9JqeIk17WSSBiW0b08fmlrUhJ3c6l/fvQrlCXNVcc+oLMJtZvjJ1cWS7erEEKZJZlfIB76jaOAN8oAoRn3orLPEZmE54Em7+TK8uAmm1Q6d2uEfstWx/dRGzLCHx7RUbqNi59Q2/qi6zUbg76iawGr8Hmh1wZZA1Peos40OqrGiLWFryjbnOI3E/mMGC0yGMif9NfZDaofueGXC7SPrRrPvrsP9qCjNRtLvoLWJ3drXnpOzIbULvzQq4sF2a2b1VHt2vEfszWZzcR23I0bUBG6jYn/XaN9ssr6zqJdly/wEydxyCPK75iEbCPiZIW1BEZqdvcIvaftUdOEWsJHlGrddjRRWYda3dOyJXhYsy4yMzQrqNk7L+VqV0yUrc16MfztF0+1kdrc80CkXQak8aHXAbXPma36+zf/0jGhVzEduxtxXMmP3Vbi/4EICtzGJl1qF+PKz6SMRyJwADbxkrtuNK5Uoe6rUm/cpbaIQN1Wpv+JbPG9Ts25Mpw8WUMuDK06ywZ+3MV6hbgMXMX0JI11xr0M2zbNjLkctH1Ea1dox0PQEvGuNr073HaLA/h6Zpco2vR32TVsHY9rnjP5N9GtME1Y79Ga8PWqp8fNanbNehnjlAvANBGozl1TMhlAdBH5HaNfGzMpTYA3sv4BQ0QizXXmvQ7mTWoXzu5brItJg1ex2Tr323TxxCJ63Et+vsY7RVfxnUQcJ5xmYX1D7kyXGAm/j4y9D1jqQkyUrcAZGPuArK6OH7ZyZUx4Mo0aUU6Vn0NwF4Rxt+M89ZKItQIAPCHviGXyb89bUpWahcAoD9rLrZNHbCsfiFXhosq2zekGdr0kUjHna3Pty1W+8FqXH9r0//7aau4Mq59AFjbhXWFxxWzyL54zH78ADCDgCIm6xogA2MVC1o35LJoHC/KIKvvx4vS93CEugUgG3MXUMXJ8axPyGVwbUt7ogYA5jD+7qet4vHFHgCLWXMnV6YJv9qCMcr5ZKoBANZmzgL2iLLOJhZ1wWLah1wuonaqtmXV8+ota7tlPW4AeMS8BgBhrbeTK8u3odUXUBHOL0stAONFGKOIQz3sp63isM4BILsT64q2IZeFDUeoFwAgE2sXAAhtrZ1cWb7RsoAaJ0tN3KgNgDVlm6+AsawReUV9sJB2IZcLp43V2nG1812N/gVYj7F/PqEoAFUcXFess5Mrw2S/6qJw1fMGYjImAQBASuuEXMQ286YyQwB6zw04wHgRxt5s81U1EWoAAHipTcgVfdLPsCiM3oYAAMSXYd1LW+4jAP71c/YBsJmYbj4+v6YtzH7/+qEf2LYt/82BOl5XptpVp/XNnNOBHDKPERnnMeNyO9nbMWP9HnB9J1fxBupO+/1Je+yToZ0yHON32Scs1vT71490tZvxmKPQbnNknNMgsuxjWfbjZ23F67f+O7mKdyDQiLGCjLLXbfbjB+C4KmN/lfNgTYXrt37IFZlvBR+b1S6FL3QAYAHWMkSnRoHOaodckQdRAddr2oeRIo8V8EyVuq1yHiNlaTNzOVBdlvEYHslUvwfWFNdCLosXmMf1B+25rnhFfawpS79nullhTWoUGKD2Tq6osiyWZpvRTibf9ehzgH6seYDqrCXJrGD91g25CnbWkiyOAQAAgB3Oh1zCh3O0W3yZAlL1BLCmTHNVZuZZAEil5k4uC79aLDABAJ6z9gWAbduqhlxRCWsAgFayBBvWPwDAIEKuUSzwrtF+AHVlCWtYi7UHAKRzLuQy6VNdphsu1yMArCvTmgUAOqu3kyviRC+EaEM7AkBO5nAAYIB6IRcAwCoifrkHADDJ8ZDLN3HHaK+2RranGwcAWFOW9Zu1CgD8odZOLhM9q8qyGAegvSzrH3MVANBZrZCLNVgkAwAAAN8IuXoSxgAA5GL9BgBpCbkAACCbLI+pAsBAQq5efAvY16j2tYAEIIMs85X1EQDQUZ2QK8viDgCAmLKEcNa9APDQsZAry8TPGtQjAAAA8P/q7OSKRPhSS5ZvS9UdkJXxqw3zFQCwOCEXAAAAAOn9nH0AcMnH51eab64BWrIbBtrKck1Z9wDAU3ZytZZlgQQA1CMAAQAWJuQCAGAsXwqeI8QEgJf2h1yRFyMm/LVFrk0AID5rCQAowU6uliyQAIDZfPkHACxKyAUAwHi+HAQAGhNywR5ZvhV3wwAAx2SZO7OsRQBgIiEXAEA1AhEAYEFCLmrI8i0sAAAA0IWQqxUhCwDAMdZP+9iZBwC7CLkAAFiTkA0AShFyAQBUlGX3j6AJAGhEyAUAAFFlCSsBIAAhFwAA67GDDADKEXJRh8UqAPzJLiAAYCFCLgAAiEhICQCHCLkAAJhr9G5su78BoCQhFwBAZXYDAQCLEHIBADCf3VUAwEVCLmLyrTMAsDJrIQA4TMgFAFCdwOQ/dowBQFk1Qi6LlVosxAEAAICDaoRcGf3+9UOYAwBwxxeX/7BGBIBThFwAAKxBiAYApQm5iMU3l9doPwCeyTJHCKIAgJOEXLPcFnBZFpwZaEsAIDvrGQA4TchFHBZ1AAAAwElCrgiEO3/zqAIAtLfymsPaAgDKqxNyzV64XF00rrzo3Lb45z+7vgBgJavOu9HXQwAQ3P6Qy6Tb3qoLuO/UFgAAAHBRnZ1cFQh7ztN2ALDPinOmLxYBYAlCrmhWW3g+Ol8LUQAiWm2Onm219YD6AoDLhFwtWZwco73a0p4AAAAs7OfsA2jq4/Mr3Y3+o2P+/etH+W8vn/VT9fMGaCXbfEcsK6w1blY5TwDATq6wKt+8tD63ym0FAAAA7HIs5BIm9PHsG0btHYNvgAFgjlXmYGs+AGii3k6u2Yshu5Ree3U+Z/quWvsAwCgrzKGz14UAwFD1Qq6sXi3CqixCWwdcAADZVVnnAUAAQq4ezi5WqgZdv3/9SHv8wjcAAABIoWbIVTWYyBgW7Tnes/2VrS160hYAVFV1XQcANFcz5Mpsz0IuS6Ah4AKA2CrPp8IxAFjO8ZAry2Jo9sLmSjvtDbqi9kXkYwMAiMJ6CQCaspOrpxELl2iLoyPHMzuIfCf68QHAKszJAMAOtUOuzAuiI8c+e+fU7fePCriiBXuzaQ8Arqg4j2ReAwIAp50LuSouhnrp/dji9981um/O/D4BFwBwVLXgypoGAJr7OfsAlvD714/TC7OPz6/Di6Dv/33LReHVBVmWBWqW4wQAAAC2bVsh5DoTEkVz9Rzuf/bM7rBWrgZH2fsRAKK68oUcAEAQ9UOuKK4uHm8/ezXomRUUCbj60C4A8KcMYd0K83eW4LTCF+IA/Kv2i+dvokywLSbQKOdyRLZjzna8ALAKczQA8ML5kMs3HvNkWeB9fH41OVa1BgD9mW8BgOTW2Mm1bXGCoVYLyCjn80yr4xu94I7ervfcjADAnzLN48ShbgDKuBZyZbvJjjKBtQy6Wu2WaqXl8WSrL3KKdP0A8F72cdv6BgC6WWcnVzStFzizF3ytw7YZC8DZbQgAswlgWJV1IEAJ64VckSawHkHXyJ1dvX6fBTYwi/EH8oq0xgP+VvUarXpekNTP2QewvF5/Xvn+M1vetPUexGfdYGabnNyIA0A+5m8A6Op6yNUrpOnp4/Mr1CKjdxu++uxH7TCrPwVczBJtTIA91C29ZFjbqX96UFf9aWOgs/UeV7yJtnibGfB8/98MJrv9tFUf0cYE2EPdApFlXLMYVzlCvUA4bUKujBPYtsUblLK241UzzztaDVSyaj3DaMYxyHEdmBfzyFBPmVVo32h/4R74l3dyRXNbAK0yaFrwEUmvd9lBb7faVbesZJW1EnMYV/vKvObKOvZka2c4ScgV9bnwDO/DuCJCm2ds3wjttoqM9QHqtp3Vx9vq6xDGyV5LGcKuKm0M0EC7d3JFHvjfiTqw/v71I3W7PhPhnKL2OQBQT4S1D9d4PA0gBTu5bqLu6Nq2Oo8wRm3fLLQfjJH9G3EA+nk0P1ijAYTR9q8rZh/go9/UZG3faDvSovczAEQQae6GyOzyAgijbchFf9ECo1ciHqsFyFjR+h8ARjMXMoI64xX1wULah1zZL6AsIUjEAOkm6rFl6dtHIrYnAMAe1jEADGIn1yOZwpBboDR78RDlOJ7J1KfAfFHHMhjNtQAAJNIn5KqwIMoYiowOmqIHW1VoXwDIyRz+H20BwAD+uuIrkf/i4juvjvtIgJf1/O9lDCwr8ZfqAABgjgr3c3BAv5Cryo1t5qDrmWrn80r2GlyprwCIqcqaDqpzrQJ4J9cuJouc9BtwhZAZoC3jKgCdCbn2EpjkUqG/Ki0EK50LAOxh7mMGdQcsrm/IVW2Q/fj8KhGeVFalj6pdOwDkZl6iFbUE47jeWFD/nVwVL6wKIUpF+iW2imMB9albAABIw+OKZwlUYtEfAEAUAvLXtE9f2pdtUwcsa0zIVfUCE6zEUK0fql4v21b73KhL3QIAmVi7sDA7ua6q8g6orKq1vQkJgKjMUbSknvrSvsCixoVc1QfaamFLdMLFvKqPBdSkboG9jBdEoRaBBdnJ1ZLQZYyq7WwhArG5RsF1QFvqCdpzXbG4sSHXChecHUb9VG7bFa6Ne6udLwDwmDVBX9p3LfobJuzkWuXCqxzIzKAt61llLKAWdQu8Yow4R7v1pX3XoJ9h2zaPK/Yn7LpmhfYzIUEurlkAAAhpTsi14g1C9aCmtRXCrW1b81q4t/r5k5faZWXqnx7UVV/atzb9C/+yk2ukVYKbK7TRekzKQDTGJc5QN9dpw760b036Ff4wL+T6/evHshfkLcgR5vxnxfZYtf4f0RZkpG5r0q8wl2uwL+1bi/6Ev9jJNduK4c69Vc/fhPQ3bUJG6rYW/bmftqIn9dWX9q1BP8JD80MuF+c/VtvdtdK5sp/xgIzUbX4r7y6HqFyTfWnf3PQfPDU/5No2F+l3VQOg1YK8Z9T7a9qHjIQkeek3WlBHfWjXvrRvTvoNXvo5+wB44XsYlHFAWz3Q+i5jH85wayf1Qza/f/1Qt4kYk69R74ygzvqy5srFvAVvxQm5TGDv3bdP5AFOPz4Wuc+iMi6QkRuG+IzHkItxtT9rrtjMW7BbnJBr2wyuR7xqp1GDoL7az8R0noUtWZnTYjIe05qaGseaoC/tG4/xBQ6LFXJtm5uCFp6139lBUn9cY3Jqw8KLjNRtLMZjqMH9Ql/mrvnMV3BavJBr20xcvWhTKrDwIiN1O5ebhX6s2ZjFuNqfNh7PfAWXxQy5ts2iiRpMVP1YeJGRuh3POExP6ms+42p/2rgv4wg0FTfkguxMWGPct7PFF1l8Hx/Ubh/G4TF8MUkEgpj+rLnaMkdBF7FDLosmsjJpzfGo3Y0hZCD0assYDOsSxIxhzXWMeQmGiR1ybZugi3xMYrG86g9jC1G9G0fU7nPGYEZRa/EJvMZafc1lTFiDfg4vTwetMDCSn0GP2TKNla4XAGboNVea1wCmi7+T68aOLqKzsAEAiG/1HUcAheUJubZN0EVcAi4AgPwEYACp5bwxN8EQiYCLSDKNj64dAACgof/NPoBT3BgRhVoEAACAEHKGXNsmXGA+NQgAAABh5A25tk3IwDxqD65xDQEAAI3lDrm27Z8bJTdLjKTeAAAAIJz8IdeN4IER1BkAAACEVCfk2jYBBH2pLwAAAAirVsi1bYII+lBXAAAAEFq9kGvbBBK0pZ4AAAAgvJ+zD6CbWzDx8fk1+UjISrgFAAAAadTcyXVPUMEZ6gYAAABSqR9ybZvAgmPUCwAAAKRT93HF7zy+yDvCLQAAAEhrjZ1c9wQZPKIuAAAAILV1dnLds6uLG+EWAAAAlLDeTq57Ao616X+qEdwDAAALW3Mn1z27utYj3AIAAIBy1t7JdU/wsQb9TFWCegAAYHFu+B9xs1iLYIvqMo5ZrksAAKAxNxmvZLxx5E9upKkq8/jkugQAADpwo7FH5pvJVbmJzsm1tgbXJwAA0IF3cu3hhiyP379+6C8AAABYj7+uuJe/whibYAsAAACWJuQ66j5MEXjNJ9wCAAAANiHXNXZ3zSPcAgAAAO4ICloSdvUl2KrPNVSf6xgAAOjETq6WPMrYh5tiAAAA4A0hVy8Cr/OEWgAAAMBBQq4RvLtrH+EWAAAAcJJQYSahl2CLP7kmanO9AwAAHdnJNdOKjzS6yQUAAAA6EHJF8Sj8yR58CbQAAACAQYQQ2UQNvgRatBC1vrnOGAEAAHRmJ1c2724Ue4YEblIBAACAoIQWQBx2ctUkIAcAAAb43+wDAAAAAICrhFwA9GMXFwAAMIiQCwAAAID0hFwA9GEXFwAAMJCQC4D2BFwAAMBgQi4AAAAA0hNyAdCWXVwAAMAEQi4A2hFwAQAAkwi5gDgEJLnpPwAAYCIhFxCLoCQn/QYAAEzmpgSI6+Pza/YhsIOACwAACMBOLiAu4Ul8+ggAAAhCyAXEJkSJS98AAACBuEEB8vD4YgzCLQAAICA7uYA8hCvz6QMAACAoNytAPnZ0jSfcAgAAgnPTAuQl7OpPuAUAACTh5gXITdDVh3ALAABIxk0MkJ+gqx3hFgAAkJSbGaAOYdcxAi0AAKAQNzhALYKu1wRbAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAANPFj9gEA/Ovj82vbtm37/Wve2HQ7hptWx/L9c1t+9pXjOHIM9z97+7nv/+zRee75Xa9+7pWzbfjx+fXXz549hu9G9+v9dfPovI58xr37z9nT9+8+b89nP/u8M862RYvf+86ea2HmODjD9zq+/f9VHL3GVtBrPu6p5zE/uy5azV3fP7tF/bU8tu8eHVOEa+bZOb+a93od67Nx5d167dmxtejPZ+caZZ18r9W8FPHc3jmyLmytQdvEblygtqs3gy0duSlv+blXPnvUMfScyFp4134Rjr9HH7eorQht88qedpt1jY1suxnHH2Xs3bb4NwNHZA3TR4pSm0f0POZI4/Te88h4zHtkGfcjtf8zj8L8d//tKGcCwLOfE2k8i1Y3F9rmZ8vjAGhu1m4MaCnCt8tcN2sBOKN+jL3t9KibjLucIKsZY791w39GzketAi6m+t/sAwB4K9o3C3CFes7n4/MrTL+NPI4o55zZqDbUV9BelLE/wjH0Eml3oICrDCEXkEPlCZ71RFk4817EfhpZPxHPP4MZ17i+gnaiXU+V1w0Rgi4BVykeVwTy8PjMHO9euPno351ZiLx72fKIx3Me/b5XL/k98k6JR2bX9Jl3Xh15Ye3e3xP1sYwWfxBhzx9jiH7jMrtOV/Hsj0ccqQ99xZ55bM+/n/EHIFq9h3HvZ139He9+76yx/cpL+a+s367Yu7YwxsXQ612hjT5XyAXkYnKb41WbP/p3R2/e7z/j2e/q3e/fP//IcbxbUGb27Hxb3mhUuKav1O3Z+hn9npIK/TTClWvj3T+rMq7Q1tnx5+jc3tLZz4/wx3purrTv2d97dize+zN75/dK84FdXPv1bIOGn+1xRSAfi/w8siwIeu8KeyVrPWfp27OOLHpn1s9IWWs1op43+PoJ+ms9RveaSzKZsW4ScJUk5AJysogHZouw08F7n2JZbQcErGj2bpbK4/DIoEvAVZaQCwB6sTCioso3WADMFWknvHVcSkIuIC83WgBzGH8B6KVnuLT3L1UKuNIScgG5udECmMP4C0Avqz+6yWlCLiA/ExzAHMbf47QZ8ErLv9q4giNjqvdwLeHn7AMAeOk2ybyblPx5e4B29o69t//G+PuP379+dA+xnvWNPoA6XM//2Dum7pmHBFzLsJMLyMGWZYDxIr0AuJIW7fX7148//gdQ0ch5yFhagpALyEPQBTCeoOsY7QW17X1xOe1cDZ+8aH4pQi4gF0EXwHiCmz60F8RyJOi4hV33/6Ofs/cAAq7leCcXkM+e5/O9I4YILHippOW7UfiP9mJFPefHq9fTlXfrvfo51/l1R+8BrMPainzd3hFyATkJuojOC06pSND12tUb4xXbjOuS3Him0uOPSAjAxjnSd9o+hobrBo8rAnl5dJFWWtbJkUcWLKzISN3+rdWjSuYsiGPkH3Xw2ON+LfvEfFaSnVxAbnZ00YpFJexn7P1Pz90ezx65+d6uj37m2eeu0CfQ0v01M2qtsOeaXlmLnXbatSwhF5Cfmy0yUo9kZ+ztf8P77PNf/d49fXJTuW+gh1cBcy/Vx9GzrgRd2jMe7+QCOMEigQjUIJWsHHRdeSzZzlFWV2VMeHcera51OzEfOxN0acNrErSfkAuowcuQiUzNUdnKQdc7z87ZX/6itRWvrwxe9cuZ63/VsZQYktSekAuoQ9DFFUdrwsvl4T+rBV17rv8959rjL7ixnirX1WpmvOuroiPjqGtlCUIuoBZBF2ecqQU3p/Cn1YKuVlrs6vre9toYcjkyDhhH/7Zn/tFmy/jf7AMAaG7vJCag4Ko9tabOWIlr4ryzYfvt527/340c5OX6hcvs5AJqOrKjC3rzrSsr2buji78d3dVlbIG27AaC9OzkAuqyEGEEOwfhb8bfa460n7EFxnG9QXhCLqA2N1qMoM7gb66La448evjx+eXmGwCEXMAK3GgxgncRwd+Mv9fZ1QUAuwm5gDW40SIKN6Gsxvh7naALAHYRcgHriHqj1fOGxM3OWN7PtZbe/bjn86OOa99lOc69ou/c9Pgi5OS6hcuEXMBaRt9ozQw99n5mtZvP2QRdNczux4r1seJY06ofz35OxTqCnvYG2NZtENbP2QcAMNyeP28/w/djul/E3P5M/KPjPvon5+lvb43d+pXc3l27r1y5fjPWTtTx94wj1/n9zzz6598/991/c8TtMzLWyyMtzufRZzzrJ/q40o9R+u/VmmzPf1NlLOS8PTX0/b+bWfc955OGa2IhF7CmkTdaZ3/X95959hlXzsNCvp9KN/OranXttvpvye9oKNb6d1ca81sGgK/+eaU2i+hKP/bqvyvzd+9rXD3W964+zt4PtKydEbvYLxyvxxWBdY1cKERclEQ8phUJOWKLep1EPa49Mh/7dxHO5fevH4cerzXmwHsRru3vIh4TBCTkAtY2OuiKsECJchwrmP1eJ9qIdM1EOpYrKpzDzaw++f57/QVGaCvKeBvlOCAJjysCjH6sbNa7GKIukKIeVysrP7ZYrW9bvyvpzO+tpNq1Mao+XtXDkfml2uOL0It1G6TiwgHm+/4Sw9kL71cvkZ51DDePFlrPXlBpcfSnvS/3HHEM9zf3V4/hvq9nvWA6youtv7fvyOM5+xLxZy8pHv3i5Nl9t20xxt4ejr54/rtWL1jP9p6pV39wpZVX/XHlhehXPuPdZ0dZK+3x7gXxZx15Mfdoe+aCZz8TrT97rFlGiFIL3z0a00Z8OXL1jzv4Ug8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAOOT/AIOCnqrge+yJAAAAAElFTkSuQmCC";
+document.getElementById('logoNav').src = GEVLON_LOGO;
+document.getElementById('favicon').href = GEVLON_LOGO;
+
+// ---------------------------------------------------------------------
+// Contenu réel de la formation — texte pédagogique écrit pour Gevlon.
+// (La vidéo elle-même reste à filmer/héberger ; ce texte est le vrai
+// contenu de cours, pas un espace vide.)
+// ---------------------------------------------------------------------
+var MODULES = [
+{
+  title:"Comprendre le métabolisme et l'insulinorésistance",
+  sub:"Les fondations",
+  content:[
+    "Le métabolisme désigne l'ensemble des réactions chimiques qui transforment ce que vous mangez en énergie utilisable par vos cellules. Au centre de ce processus se trouve l'insuline, une hormone produite par le pancréas dont le rôle est de faire entrer le glucose (sucre) du sang vers les cellules, pour qu'il y soit utilisé ou stocké.",
+    "Quand on consomme régulièrement de grandes quantités de sucres et de féculents raffinés, le pancréas doit produire de plus en plus d'insuline pour faire le même travail. Avec le temps, les cellules répondent moins bien à ce signal : c'est ce qu'on appelle l'insulinorésistance. Le corps compense en produisant encore plus d'insuline, ce qui favorise le stockage des graisses, en particulier au niveau abdominal.",
+    "L'insulinorésistance est silencieuse au début — on ne la ressent pas forcément. Mais elle est le terrain commun de plusieurs problèmes : prise de poids difficile à inverser, fatigue après les repas, envies de sucre fréquentes, et à terme, un risque accru de prédiabète puis de diabète de type 2.",
+    "Comprendre ce mécanisme change la façon d'aborder la perte de poids : il ne s'agit plus seulement de « manger moins », mais de réduire les pics répétés d'insuline pour permettre au corps de redevenir sensible à cette hormone, et de retrouver l'accès à ses réserves de graisse comme source d'énergie."
+  ],
+  takeaways:[
+    "L'insuline est l'hormone qui régule l'entrée du sucre dans les cellules.",
+    "Une consommation élevée et répétée de sucre peut mener à l'insulinorésistance.",
+    "L'insulinorésistance favorise le stockage de graisse abdominale et complique la perte de poids.",
+    "Réduire les pics d'insuline est la clé pour redonner au corps l'accès à ses réserves de graisse."
+  ],
+  quiz:[
+    {q:"Quel est le rôle principal de l'insuline ?", options:["Digérer les graisses","Faire entrer le glucose dans les cellules","Éliminer les toxines","Stocker les vitamines"], correct:1},
+    {q:"L'insulinorésistance se développe généralement à cause de :", options:["Trop de sommeil","Une consommation élevée et répétée de sucre","Trop d'activité physique","Un manque de protéines"], correct:1},
+    {q:"Un signe possible d'insulinorésistance est :", options:["Une soif excessive d'eau uniquement","Des envies de sucre fréquentes et une fatigue après les repas","Une perte de poids rapide et inexpliquée","Une amélioration de la vision"], correct:1}
+  ]
+},
+{
+  title:"Les bases scientifiques de la cétose",
+  sub:"Comment fonctionne le kéto",
+  content:[
+    "Le corps humain peut fonctionner avec deux grandes sources d'énergie : le glucose (issu des sucres et féculents) ou les corps cétoniques (issus des graisses). En temps normal, avec une alimentation riche en glucides, le corps privilégie le glucose et met les graisses de côté.",
+    "Le régime cétogène consiste à réduire fortement l'apport en glucides (généralement en dessous de 50g par jour, à ajuster selon les besoins) pour épuiser les réserves de glycogène. Le foie se met alors à transformer les graisses en corps cétoniques — principalement le bêta-hydroxybutyrate — que le cerveau et les muscles peuvent utiliser comme carburant. Cet état s'appelle la cétose nutritionnelle.",
+    "Il est essentiel de distinguer la cétose nutritionnelle, un état métabolique normal et sans danger pour la plupart des adultes en bonne santé, de l'acidocétose diabétique, une urgence médicale qui survient presque exclusivement chez les personnes diabétiques (notamment de type 1) lorsque l'insuline manque complètement. Ce ne sont pas la même chose, mais la confusion entre les deux termes est fréquente.",
+    "En pratique, un régime cétogène équilibré repose généralement sur environ 70-75% de l'apport calorique en bonnes graisses, 20-25% en protéines, et 5-10% en glucides — ces proportions sont indicatives et doivent être adaptées à chaque personne, idéalement avec un accompagnement professionnel, surtout en cas de diabète, de grossesse ou de pathologie chronique."
+  ],
+  takeaways:[
+    "La cétose est un état où le corps utilise les graisses comme principale source d'énergie.",
+    "Les corps cétoniques sont produits par le foie à partir des graisses lorsque les glucides sont réduits.",
+    "La cétose nutritionnelle est différente de l'acidocétose diabétique, une urgence médicale.",
+    "Les proportions macro typiques (graisses/protéines/glucides) doivent être adaptées à chaque personne."
+  ],
+  quiz:[
+    {q:"En cétose, quelle est la principale source d'énergie du corps ?", options:["Le glucose uniquement","Les corps cétoniques issus des graisses","Les protéines uniquement","Les fibres"], correct:1},
+    {q:"L'acidocétose diabétique est :", options:["La même chose que la cétose nutritionnelle","Une urgence médicale distincte, liée à un manque d'insuline","Un bienfait du régime cétogène","Sans lien avec le diabète"], correct:1},
+    {q:"Un régime cétogène typique repose majoritairement sur :", options:["Les glucides","Les bonnes graisses","Les fibres uniquement","Le sucre naturel"], correct:1}
+  ]
+},
+{
+  title:"Adapter le kéto à l'alimentation locale — méthode AfroKeto™",
+  sub:"La méthode Gevlon",
+  content:[
+    "L'un des plus grands freins au régime cétogène en Afrique de l'Ouest est qu'il est souvent présenté avec des produits importés et coûteux. La méthode AfroKeto™ part d'un principe simple : s'appuyer sur les aliments locaux, accessibles et abordables, plutôt que d'importer un modèle occidental.",
+    "Côté légumes, les feuilles vertes locales (gboma, épinards, crin-crin/corète, feuilles de patate douce) sont d'excellentes bases, riches en fibres et en micronutriments, avec très peu de glucides nets. L'aubergine locale, le chou, le concombre et le poivron complètent bien les repas.",
+    "Côté protéines : poisson frais ou fumé, viande, œufs, crevettes et soja sont d'excellentes options. Il faut faire attention aux sauces et marinades qui contiennent souvent du sucre ou de la farine comme épaississant — les préparer soi-même permet de mieux contrôler les glucides cachés.",
+    "Les féculents traditionnels à forte teneur en glucides — riz, igname, gari, pâte, foufou — sont les principaux points de vigilance. Ils ne sont pas « interdits », mais leur fréquence et leurs portions doivent être fortement réduites pendant la phase d'adaptation. Le chou-fleur émietté (« riz de chou-fleur ») ou l'aubergine en tranches sont des alternatives locales qui imitent bien leur texture.",
+    "Pour les matières grasses, l'huile d'olive, l'avocat, les noix et arachides (avec modération, car riches en glucides au-delà d'une petite portion), et une quantité modérée d'huile de palme rouge non raffinée peuvent s'intégrer selon les objectifs de chacun."
+  ],
+  takeaways:[
+    "AfroKeto™ s'appuie sur des aliments locaux et abordables plutôt que des produits importés.",
+    "Les feuilles vertes locales et les légumes non-féculents sont la base des repas.",
+    "Le poisson, la viande, les œufs et le soja sont d'excellentes sources de protéines locales.",
+    "Riz, igname, gari et pâte sont à réduire fortement, pas nécessairement à éliminer totalement."
+  ],
+  quiz:[
+    {q:"La méthode AfroKeto™ privilégie :", options:["Des produits uniquement importés","Des aliments locaux et abordables","Uniquement des compléments alimentaires","Des plats déjà préparés"], correct:1},
+    {q:"Lequel de ces aliments est une bonne base de légumes en AfroKeto™ ?", options:["L'igname","Le gboma (feuilles vertes)","Le gari","Le riz blanc"], correct:1},
+    {q:"Que peut-on utiliser localement pour remplacer le riz ou l'igname ?", options:["Du sucre roux","Du chou-fleur émietté","De la farine de blé","Du miel"], correct:1}
+  ]
+},
+{
+  title:"Planifier ses repas et éviter la « grippe céto »",
+  sub:"Passer à l'action",
+  content:[
+    "La première semaine d'un régime cétogène peut s'accompagner de symptômes temporaires — fatigue, maux de tête, irritabilité, difficulté de concentration. C'est ce qu'on appelle familièrement la « grippe céto ». Elle n'est pas dangereuse pour la plupart des personnes en bonne santé, mais elle peut décourager si on ne s'y prépare pas.",
+    "La cause principale est la perte d'eau et d'électrolytes (sodium, potassium, magnésium) qui accompagne la baisse des glucides : moins de glycogène stocké signifie moins d'eau retenue, et donc plus de minéraux évacués par les urines. La solution est simple : augmenter légèrement l'apport en sel, boire suffisamment d'eau, et privilégier des aliments riches en potassium (avocat, légumes verts) et en magnésium (noix, graines).",
+    "Pour planifier ses repas efficacement, il est utile de préparer à l'avance une base de protéines et de légumes pour plusieurs jours (cuisine par lots), de garder des collations simples sous la main (œufs durs, noix, fromage), et de toujours avoir un plan pour les repas pris en dehors de la maison.",
+    "Réduire les glucides progressivement sur une à deux semaines, plutôt que du jour au lendemain, peut aussi atténuer les symptômes d'adaptation pour les personnes plus sensibles."
+  ],
+  takeaways:[
+    "La « grippe céto » est un ensemble de symptômes temporaires liés à l'adaptation, pas un signe de danger en soi.",
+    "Elle est principalement due à la perte d'électrolytes (sodium, potassium, magnésium).",
+    "Augmenter le sel et l'hydratation aide à réduire ces symptômes.",
+    "Cuisiner par lots facilite la tenue du régime au quotidien."
+  ],
+  quiz:[
+    {q:"La « grippe céto » est principalement causée par :", options:["Un manque de protéines","Une perte d'eau et d'électrolytes","Un excès de graisses","Une allergie alimentaire"], correct:1},
+    {q:"Pour atténuer ces symptômes, il est conseillé de :", options:["Réduire l'eau bue","Augmenter légèrement le sel et bien s'hydrater","Arrêter complètement de manger","Augmenter le sucre"], correct:1},
+    {q:"Une bonne pratique pour tenir le régime au quotidien est :", options:["Improviser chaque repas sans préparation","Cuisiner par lots à l'avance","Ne manger qu'une fois par semaine","Éviter tous les légumes"], correct:1}
+  ]
+},
+{
+  title:"Suivi biologique : glycémie, cétonémie, bilan corporel",
+  sub:"Mesurer ses progrès",
+  content:[
+    "Suivre quelques indicateurs simples permet de savoir si l'approche fonctionne et d'ajuster si besoin. La glycémie (taux de sucre dans le sang) peut être mesurée avec un glucomètre — elle donne une idée de la stabilité du métabolisme au fil des semaines. La cétonémie (taux de corps cétoniques) peut être mesurée avec des bandelettes urinaires ou un lecteur sanguin, pour confirmer que le corps est bien en cétose.",
+    "Le bilan corporel complet — poids, IMC, masse grasse, masse musculaire, graisse viscérale, tour de taille — donne une vision plus complète que le poids seul, car il permet de distinguer la perte de graisse de la perte de muscle. C'est pour cela qu'un impédancemètre est plus informatif qu'une simple balance.",
+    "La tension artérielle mérite aussi d'être surveillée régulièrement, surtout en début de régime, car elle peut évoluer avec les changements d'hydratation et de sel.",
+    "Il est important de consulter un professionnel de santé avant de commencer, surtout en cas de diabète (notamment sous insuline ou certains médicaments), de grossesse, d'allaitement, de maladie rénale, ou de tout traitement en cours — certains ajustements médicamenteux peuvent être nécessaires."
+  ],
+  takeaways:[
+    "La glycémie et la cétonémie sont deux indicateurs simples à suivre régulièrement.",
+    "Le bilan corporel complet est plus informatif que le poids seul.",
+    "La tension artérielle peut évoluer en début de régime et mérite d'être surveillée.",
+    "Un avis médical est recommandé avant de commencer, en particulier en cas de diabète, grossesse ou traitement en cours."
+  ],
+  quiz:[
+    {q:"Que mesure la cétonémie ?", options:["Le taux de sucre dans le sang","Le taux de corps cétoniques dans le sang ou les urines","La tension artérielle","Le taux de cholestérol uniquement"], correct:1},
+    {q:"Pourquoi préférer un impédancemètre à une simple balance ?", options:["Il est moins cher","Il distingue la masse grasse de la masse musculaire","Il mesure la tension artérielle","Il remplace un médecin"], correct:1},
+    {q:"Avant de commencer, il est recommandé de consulter un professionnel de santé si l'on est :", options:["En parfaite santé sans traitement","Diabétique, enceinte, ou sous traitement médical","Simplement curieux du sujet","Végétarien"], correct:1}
+  ]
+},
+{
+  title:"Activité physique et récupération en cétose",
+  sub:"Bouger intelligemment",
+  content:[
+    "Pendant les premières semaines d'adaptation, il est normal que les performances physiques baissent légèrement — le corps apprend à utiliser une nouvelle source d'énergie. Ce n'est généralement pas permanent : après 2 à 4 semaines, beaucoup de personnes retrouvent, voire dépassent, leur niveau d'énergie initial.",
+    "La marche rapide, la musculation légère à modérée et les exercices de mobilité sont d'excellents choix pendant cette phase, car ils sollicitent moins les réserves de glycogène que les efforts très intenses et courts (sprints, HIIT).",
+    "Le sommeil et la récupération jouent un rôle central dans la régulation hormonale, y compris pour la sensibilité à l'insuline. Un sommeil insuffisant peut ralentir les progrès, quelle que soit la qualité de l'alimentation.",
+    "Comme pour l'alimentation, l'activité physique doit être introduite progressivement et adaptée à l'état de santé de chacun — l'objectif est la régularité sur la durée, pas l'intensité ponctuelle."
+  ],
+  takeaways:[
+    "Une baisse temporaire d'énergie à l'effort est normale en début d'adaptation.",
+    "La marche et la musculation modérée sont bien adaptées à cette phase.",
+    "Le sommeil influence directement la sensibilité à l'insuline et les résultats.",
+    "La régularité compte plus que l'intensité ponctuelle."
+  ],
+  quiz:[
+    {q:"En début d'adaptation au régime cétogène, il est normal de constater :", options:["Une augmentation immédiate des performances","Une baisse temporaire d'énergie à l'effort","Une perte totale de force musculaire définitive","Aucun changement jamais"], correct:1},
+    {q:"Quel type d'activité est particulièrement adapté pendant l'adaptation ?", options:["Sprints intenses uniquement","Marche rapide et musculation modérée","Jeûne total sans mouvement","Aucune activité n'est jamais recommandée"], correct:1},
+    {q:"Le sommeil influence :", options:["Uniquement l'humeur","La sensibilité à l'insuline et les résultats globaux","Rien de lié au métabolisme","Uniquement la digestion"], correct:1}
+  ]
+},
+{
+  title:"Études de cas, erreurs fréquentes et questions/réponses",
+  sub:"Apprendre des erreurs courantes",
+  content:[
+    "Erreur n°1 : négliger les légumes. Le régime cétogène n'est pas qu'une question de graisses et de protéines — les légumes non-féculents apportent des fibres et des micronutriments essentiels, et leur absence peut causer des inconforts digestifs.",
+    "Erreur n°2 : consommer trop de produits ultra-transformés « spécial kéto ». Beaucoup de produits industriels étiquetés « keto » restent riches en additifs et parfois en glucides cachés (édulcorants qui affectent certaines personnes, sirops divers). Privilégier des aliments bruts reste la base la plus fiable.",
+    "Erreur n°3 : ignorer les électrolytes, ce qui prolonge inutilement les symptômes de la « grippe céto » abordés au module 4.",
+    "Erreur n°4 : abandonner après quelques jours difficiles sans ajuster. La plupart des difficultés initiales se résolvent avec de petits ajustements (sel, hydratation, progressivité) plutôt qu'en abandonnant l'approche entièrement.",
+    "Question fréquente : « Puis-je faire ce régime si je suis diabétique ? » — C'est possible pour certaines personnes, mais cela nécessite un encadrement médical, car les doses de certains médicaments (notamment l'insuline) doivent souvent être ajustées pour éviter les hypoglycémies.",
+    "Question fréquente : « Est-ce un régime à vie ? » — Non, nécessairement. Beaucoup de personnes l'utilisent comme phase de transition pour retrouver leur sensibilité à l'insuline, puis réintroduisent progressivement plus de glucides de qualité, en restant attentives à leurs sensations."
+  ],
+  takeaways:[
+    "Les légumes non-féculents restent essentiels, même en régime cétogène.",
+    "Les produits industriels « spécial kéto » ne sont pas toujours la meilleure option.",
+    "La plupart des difficultés initiales se corrigent par de petits ajustements.",
+    "Un encadrement médical est nécessaire en cas de diabète, notamment sous insuline."
+  ],
+  quiz:[
+    {q:"Une erreur fréquente au régime cétogène est :", options:["Manger trop de légumes verts","Négliger les légumes non-féculents","Boire trop d'eau","Trop dormir"], correct:1},
+    {q:"Les produits industriels « spécial kéto » sont :", options:["Toujours la meilleure option","Pas toujours fiables — mieux vaut privilégier les aliments bruts","Interdits dans tous les cas","Sans lien avec les glucides cachés"], correct:1},
+    {q:"Pour une personne diabétique sous insuline souhaitant essayer ce régime :", options:["Aucun encadrement n'est nécessaire","Un encadrement médical est recommandé pour ajuster les traitements","C'est totalement déconseillé dans tous les cas sans exception","Il faut arrêter tout traitement immédiatement"], correct:1}
+  ]
+},
+{
+  title:"Examen final et certificat",
+  sub:"Validez votre formation",
+  content:[
+    "Ce dernier module reprend les notions essentielles vues dans les sept premiers modules : le rôle de l'insuline et l'insulinorésistance, les mécanismes de la cétose, l'adaptation locale avec la méthode AfroKeto™, la gestion de la phase d'adaptation, le suivi biologique, l'activité physique, et les erreurs à éviter.",
+    "Répondez aux questions ci-dessous pour valider votre formation et débloquer votre certificat Gevlon Nutrition & Lifestyle, avec QR code de vérification."
+  ],
+  takeaways:[],
+  quiz:[
+    {q:"L'insulinorésistance est favorisée par :", options:["Une consommation élevée et répétée de sucre","Trop de sommeil","Un excès d'eau","Le froid"], correct:0},
+    {q:"La cétose nutritionnelle est :", options:["La même chose que l'acidocétose diabétique","Un état métabolique normal où le corps utilise les graisses comme carburant","Toujours dangereuse","Réservée aux sportifs de haut niveau"], correct:1},
+    {q:"La méthode AfroKeto™ se distingue par :", options:["L'usage exclusif de produits importés","L'adaptation aux aliments locaux et abordables","L'interdiction totale des féculents","L'absence de tout légume"], correct:1},
+    {q:"La « grippe céto » est surtout liée à :", options:["Une perte d'électrolytes","Un excès de protéines","Une carence en sucre uniquement psychologique","Une allergie fréquente"], correct:0},
+    {q:"Le bilan corporel complet est utile car il :", options:["Remplace un avis médical","Distingue la perte de graisse de la perte musculaire","Mesure uniquement le poids","N'apporte aucune information utile"], correct:1},
+    {q:"Pendant l'adaptation, l'activité physique recommandée est plutôt :", options:["Des sprints intenses quotidiens","La marche et la musculation modérée","Aucune activité","Des exercices extrêmes"], correct:1},
+    {q:"Une personne diabétique sous insuline qui veut essayer ce régime devrait :", options:["Se lancer seule sans en parler à personne","Consulter un professionnel de santé pour ajuster son traitement","Arrêter l'insuline immédiatement","Ignorer sa glycémie"], correct:1},
+    {q:"Ce régime doit-il être suivi à vie ?", options:["Oui, obligatoirement et sans exception","Pas nécessairement — il peut servir de phase de transition","Uniquement pendant 3 jours","Cela n'a aucune importance"], correct:1}
+  ]
+}
+];
+
+var progress = MODULES.map(function(){ return { done:false, score:0 }; });
+var currentIndex = 0;
+var learnerName = "";
+
+function renderSidebar(){
+  var wrap = document.getElementById('sidebar');
+  var html = '<h4>Programme de la formation</h4>';
+  MODULES.forEach(function(m, i){
+    var cls = 'mod-item' + (i===currentIndex ? ' active' : '') + (progress[i].done ? ' done' : '');
+    html += '<div class="'+cls+'" onclick="goTo('+i+')">'
+      + '<div class="mod-check">'+(progress[i].done ? '✓' : (i+1))+'</div>'
+      + '<div class="mod-title">'+m.title+'<span class="mod-sub">'+m.sub+'</span></div>'
+      + '</div>';
+  });
+  html += '<div class="mod-item" style="cursor:default;" onclick="if(allDone()) goToCert();">'
+    + '<div class="mod-check" style="background:'+(allDone()?'#DCF5E3':'')+';">🎓</div>'
+    + '<div class="mod-title">Certificat'+(allDone()?'<span class="mod-sub" style="color:#1a7a3d;">Prêt</span>':'<span class="mod-sub">Terminez tous les modules</span>')+'</div>'
+    + '</div>';
+  wrap.innerHTML = html;
+}
+
+function allDone(){ return progress.every(function(p){ return p.done; }); }
+
+function updateHeaderProgress(){
+  var doneCount = progress.filter(function(p){ return p.done; }).length;
+  document.getElementById('progressLabel').textContent = doneCount + ' / ' + MODULES.length + ' modules';
+  document.getElementById('headBarFill').style.width = (doneCount/MODULES.length*100) + '%';
+}
+
+function goTo(i){
+  currentIndex = i;
+  renderSidebar();
+  renderModule(i);
+  window.scrollTo({top:0, behavior:'smooth'});
+}
+
+function renderModule(i){
+  var m = MODULES[i];
+  var wrap = document.getElementById('mainPanel');
+  var html = '';
+  html += '<span class="lesson-tag">Module '+(i+1)+' / '+MODULES.length+'</span>';
+  html += '<h2>'+m.title+'</h2>';
+  html += '<div class="video-box"><div class="play">▶</div><div class="note">Aperçu de la leçon — la vidéo filmée sera intégrée ici. Le contenu écrit ci-dessous est le vrai contenu du cours.</div></div>';
+  html += '<div class="lesson-text">' + m.content.map(function(p){ return '<p>'+p+'</p>'; }).join('') + '</div>';
+  if(m.takeaways.length){
+    html += '<div class="takeaways"><h4>Points clés à retenir</h4><ul>' + m.takeaways.map(function(t){ return '<li>'+t+'</li>'; }).join('') + '</ul></div>';
+  }
+  if(i===0){
+    html += '<div class="disclaimer">⚠️ Ce contenu est éducatif et général — il ne remplace pas un avis médical personnalisé. Consultez un professionnel de santé avant tout changement alimentaire important, en particulier en cas de diabète, grossesse, allaitement ou maladie chronique.</div>';
+  }
+  html += '<div class="quiz" id="quizArea"><h4>Quiz du module</h4><div id="quizQuestions"></div>'
+    + '<button class="btn-primary" id="quizSubmit" onclick="submitQuiz('+i+')">Valider mes réponses</button>'
+    + '<div id="quizResult"></div></div>';
+  wrap.innerHTML = html;
+  renderQuiz(i);
+}
+
+function renderQuiz(i){
+  var m = MODULES[i];
+  var qHtml = '';
+  m.quiz.forEach(function(q, qi){
+    qHtml += '<div class="q-block" data-qi="'+qi+'"><div class="q-text">'+(qi+1)+'. '+q.q+'</div>';
+    q.options.forEach(function(opt, oi){
+      qHtml += '<label class="q-opt" data-oi="'+oi+'"><input type="radio" name="q'+qi+'" value="'+oi+'"> '+opt+'</label>';
+    });
+    qHtml += '</div>';
+  });
+  document.getElementById('quizQuestions').innerHTML = qHtml;
+}
+
+function submitQuiz(i){
+  var m = MODULES[i];
+  var correctCount = 0;
+  var allAnswered = true;
+  m.quiz.forEach(function(q, qi){
+    var selected = document.querySelector('input[name="q'+qi+'"]:checked');
+    var block = document.querySelector('.q-block[data-qi="'+qi+'"]');
+    if(!selected){ allAnswered = false; return; }
+    var chosen = parseInt(selected.value, 10);
+    if(chosen === q.correct) correctCount++;
+    block.querySelectorAll('.q-opt').forEach(function(optEl){
+      var oi = parseInt(optEl.getAttribute('data-oi'), 10);
+      if(oi === q.correct) optEl.classList.add('correct');
+      else if(oi === chosen) optEl.classList.add('wrong');
+    });
+  });
+  if(!allAnswered){
+    document.getElementById('quizResult').innerHTML = '<div class="quiz-result fail">Merci de répondre à toutes les questions avant de valider.</div>';
+    return;
+  }
+  var pct = Math.round((correctCount / m.quiz.length) * 100);
+  var pass = pct >= 70;
+  progress[i] = { done: pass, score: pct };
+  var resultHtml = pass
+    ? '<div class="quiz-result pass">✓ '+pct+'% de bonnes réponses — module validé !</div>'
+    : '<div class="quiz-result fail">'+pct+'% de bonnes réponses — 70% requis. Relisez la leçon puis réessayez.</div>';
+  if(pass && i < MODULES.length - 1){
+    resultHtml += '<button class="btn-secondary" style="margin-top:10px;" onclick="goTo('+(i+1)+')">Module suivant →</button>';
+  }
+  if(pass && i === MODULES.length - 1 && allDone()){
+    resultHtml += '<button class="btn-primary" style="margin-top:10px;" onclick="goToCert()">Voir mon certificat 🎓</button>';
+  }
+  document.getElementById('quizResult').innerHTML = resultHtml;
+  document.getElementById('quizSubmit').disabled = pass;
+  renderSidebar();
+  updateHeaderProgress();
+}
+
+function goToCert(){
+  if(!allDone()){ return; }
+  var wrap = document.getElementById('mainPanel');
+  var today = new Date().toLocaleDateString('fr-FR', {year:'numeric', month:'long', day:'numeric'});
+  wrap.innerHTML =
+    '<div class="cert-wrap">'
+    + '<span class="lesson-tag">Formation terminée</span>'
+    + '<h2>Félicitations !</h2>'
+    + '<p style="color:var(--ink-soft);margin:8px 0 20px;">Entrez le nom à afficher sur votre certificat :</p>'
+    + '<input class="cert-name-input" id="certNameInput" placeholder="Votre nom complet" value="'+learnerName+'" oninput="learnerName=this.value; updateCertPreview();">'
+    + '<div class="cert-card">'
+    + '<div class="brand">gevlon — nutrition & lifestyle</div>'
+    + '<div class="h">Certificat de réussite</div>'
+    + '<div class="name" id="certName">'+(learnerName || 'Votre nom')+'</div>'
+    + '<div class="course">a terminé avec succès la formation<br><strong>Santé métabolique & régime cétogène — le protocole AfroKeto™</strong></div>'
+    + '<div class="meta">Délivré le '+today+' · Gevlon Nutrition & Lifestyle · Porto-Novo, Bénin</div>'
+    + '</div>'
+    + '<div class="cert-actions"><button class="btn-primary" onclick="window.print()">🖨️ Télécharger / imprimer le certificat</button> <a href="afroketo-7-jours-recettes.pdf" download class="btn-secondary" style="margin-left:10px;">📥 Ebook de recettes</a></div>'
+    + '</div>';
+}
+function updateCertPreview(){
+  var el = document.getElementById('certName');
+  if(el) el.textContent = learnerName || 'Votre nom';
+}
+
+renderSidebar();
+renderModule(0);
+updateHeaderProgress();
+</script>
+
+</body>
+</html>

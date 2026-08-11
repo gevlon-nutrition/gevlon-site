@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vérification de certificat — Gevlon</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:'Inter',sans-serif;background:#F6F8FC;color:#131C33;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:24px;}
+  .card{background:#fff;border-radius:18px;padding:40px 34px;max-width:440px;width:100%;box-shadow:0 20px 50px rgba(0,31,92,0.12);text-align:center;}
+  h1{font-family:'Fraunces',serif;font-size:1.3rem;color:#001F5C;margin-bottom:6px;}
+  .badge{display:inline-flex;align-items:center;gap:8px;background:#DCF5E3;color:#1a7a3d;padding:6px 14px;border-radius:999px;font-size:0.8rem;font-weight:700;margin-bottom:20px;}
+  .row{text-align:left;border-top:1px solid #EAF0FB;padding:12px 0;font-size:0.92rem;}
+  .row b{display:block;font-size:0.72rem;text-transform:uppercase;letter-spacing:0.04em;color:#54617A;margin-bottom:3px;}
+  .note{font-size:0.78rem;color:#54617A;margin-top:22px;line-height:1.5;}
+  .note a{color:#00308F;font-weight:600;}
+  .logo{font-family:'Fraunces',serif;font-weight:700;color:#00308F;margin-top:22px;font-size:0.95rem;}
+</style>
+</head>
+<body>
+  <div class="card">
+    <span class="badge">✓ Certificat trouvé</span>
+    <h1>Vérification du certificat</h1>
+    <div id="rows"></div>
+    <p class="note">
+      Cette page affiche les informations telles qu'elles apparaissent sur le certificat scanné.
+      Pour une confirmation officielle auprès de Gevlon, écrivez-nous sur
+      <a href="https://wa.me/2290152798080" target="_blank" rel="noopener">WhatsApp</a> avec le numéro de certificat ci-dessus.
+    </p>
+    <div class="logo">gevlon — nutrition &amp; lifestyle</div>
+  </div>
+  <script>
+    var params = new URLSearchParams(location.search);
+    var id = params.get('id') || '—';
+    var nom = params.get('nom') || '—';
+    var date = params.get('date') || '—';
+    document.getElementById('rows').innerHTML =
+      '<div class="row"><b>Numéro de certificat</b>' + id + '</div>' +
+      '<div class="row"><b>Nom de l\'apprenant·e</b>' + nom + '</div>' +
+      '<div class="row"><b>Formation</b>Santé métabolique &amp; régime cétogène — le protocole AfroKeto™</div>' +
+      '<div class="row"><b>Date de délivrance</b>' + date + '</div>';
+  </script>
+</body>
+</html>

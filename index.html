@@ -513,7 +513,7 @@
         <div class="featured-includes">
           <span><span class="check">✓</span> Accès à vie sur mobile et ordinateur</span>
           <span><span class="check">✓</span> Certificat avec QR code de vérification</span>
-          <span><span class="check">✓</span> <a href="afroketo-7-jours-recettes.pdf" download style="color:inherit;text-decoration:underline;">Plan de repas AfroKeto™ en bonus (PDF)</a></span>
+          <span><span class="check">✓</span> <a href="afroketo-7-jours-recettes.pdf" download style="color:inherit;text-decoration:underline;">Plan de repas AfroKeto™ inclus gratuitement (PDF, valeur 1 000 F)</a></span>
           <span><span class="check">✓</span> Inscription 100% en ligne, sans contact préalable</span>
         </div>
       </div>
@@ -555,8 +555,8 @@
         <h3>7 jours de recettes AfroKeto™</h3>
         <p>Un plan de repas complet avec des ingrédients locaux et accessibles, 7 journées de recettes (petit-déjeuner, déjeuner, dîner, collation) et une liste de courses prête à imprimer.</p>
         <div class="ebook-footer">
-          <div class="ebook-price" style="color:#1a7a3d;">Gratuit — téléchargement immédiat</div>
-          <a href="afroketo-7-jours-recettes.pdf" download class="btn-secondary">📥 Télécharger l'ebook (PDF)</a>
+          <div class="ebook-price">1 000 FCFA</div>
+          <a href="#" class="btn-secondary" onclick="openUSSDPay('Ebook — 7 jours de recettes AfroKeto™', 1000); return false;">💳 Acheter l'ebook</a>
         </div>
       </div>
     </div>
@@ -691,6 +691,34 @@
   </div>
 </div>
 
+<!-- USSD MOBILE MONEY PAYMENT MODAL -->
+<div id="ussdOverlay" class="modal-overlay" onclick="if(event.target===this) closeUSSDPay()">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeUSSDPay()" aria-label="Fermer">✕</button>
+    <span class="featured-badge" style="background:#DCF5E3;color:#1a7a3d;">💳 Paiement Mobile Money</span>
+    <h3 id="ussdTitle" style="font-size:1.2rem;margin:12px 0 4px;color:var(--navy-deep);">Article</h3>
+    <p style="font-size:0.9rem;color:var(--ink-soft);margin-bottom:20px;">Montant à payer : <b id="ussdAmount" style="color:var(--navy-deep);">1 000 FCFA</b></p>
+
+    <div style="display:flex;flex-direction:column;gap:12px;margin-bottom:20px;">
+      <div style="border:1.5px solid var(--navy-soft);border-radius:10px;padding:14px 16px;">
+        <div style="font-weight:700;font-size:0.9rem;color:var(--navy);margin-bottom:6px;">🟡 MTN MoMo</div>
+        <div class="mono" id="ussdMtn" style="font-size:1.05rem;font-weight:700;color:var(--navy-deep);letter-spacing:0.02em;">*880*41*573753*1000*1#</div>
+        <div style="font-size:0.76rem;color:var(--ink-soft);margin-top:4px;">Composez ce code sur votre téléphone pour payer directement.</div>
+      </div>
+      <div style="border:1.5px solid var(--navy-soft);border-radius:10px;padding:14px 16px;">
+        <div style="font-weight:700;font-size:0.9rem;color:var(--navy);margin-bottom:6px;">🔵 Moov Money</div>
+        <div class="mono" id="ussdMoov" style="font-size:1.05rem;font-weight:700;color:var(--navy-deep);letter-spacing:0.02em;">*855*4*1*329807*1000*1#</div>
+        <div style="font-size:0.76rem;color:var(--ink-soft);margin-top:4px;">Composez ce code sur votre téléphone pour payer directement.</div>
+      </div>
+    </div>
+
+    <a id="ussdWhatsapp" href="https://wa.me/2290152798080" target="_blank" rel="noopener" class="btn-primary" style="width:100%;text-align:center;display:block;box-sizing:border-box;">✅ J'ai payé — envoyer la preuve sur WhatsApp</a>
+    <p style="font-size:0.75rem;color:var(--ink-soft);margin-top:12px;text-align:center;">
+      Après paiement, envoyez une capture d'écran de la confirmation sur WhatsApp — l'équipe Gevlon vous envoie votre accès rapidement.
+    </p>
+  </div>
+</div>
+
 <!-- ENROLLMENT / CHECKOUT MODAL -->
 <div id="enrollOverlay" class="modal-overlay" onclick="if(event.target===this) closeEnroll()">
   <div class="modal-box">
@@ -730,7 +758,7 @@
       <div style="width:56px;height:56px;border-radius:50%;background:var(--navy);color:#fff;display:flex;align-items:center;justify-content:center;font-size:1.6rem;margin:0 auto 18px;">✓</div>
       <h3 style="font-size:1.2rem;color:var(--navy-deep);margin-bottom:8px;">C'est fait !</h3>
       <p id="enrollSuccessMsg" style="font-size:0.9rem;color:var(--ink-soft);margin-bottom:20px;">Votre accès a été activé.</p>
-      <a id="enrollGoToCourse" href="cours.html" style="display:none;" class="btn-primary">Aller au cours →</a>
+      <a id="enrollGoToCourse" href="cours.html" onclick="goToCourseLink(event)" style="display:none;" class="btn-primary">Aller au cours →</a>
       <button class="btn-secondary" style="margin-top:10px;" onclick="closeEnroll()">Fermer</button>
     </div>
   </div>
@@ -820,6 +848,14 @@
 </style>
 
 <script>
+  function goToCourseLink(e){
+    if(accessToken){
+      e.preventDefault();
+      window.location.href = 'cours.html?token=' + encodeURIComponent(accessToken) + '&slug=' + encodeURIComponent(window.currentEnrollSlug || 'sante-metabolique-afroketo');
+    }
+    // sinon, laisse le lien normal vers cours.html (mode invité, sans sauvegarde)
+  }
+
   // ---------- ACCOUNT / "MON ESPACE" — connecté au vrai backend Railway + Supabase ----------
   var API_BASE = 'https://gevlon-backend-production.up.railway.app';
   var currentUser = null; // {id, name, email}
@@ -941,7 +977,7 @@
         el.innerHTML = '<h5>'+c.title+'</h5>'
           + '<div class="dash-bar"><div class="dash-bar-fill" style="width:'+c.progress+'%;"></div></div>'
           + '<div class="dash-meta"><span>'+c.progress+'% terminé</span><span>'+(c.progress>=100 ? '🎓 Certificat prêt' : 'En cours')+'</span></div>'
-          + '<a href="cours.html" class="btn-secondary" style="display:block;text-align:center;margin-top:10px;padding:8px;font-size:0.82rem;">Continuer →</a>';
+          + '<a href="cours.html" onclick="goToCourseLink(event)" class="btn-secondary" style="display:block;text-align:center;margin-top:10px;padding:8px;font-size:0.82rem;">Continuer →</a>';
         wrap.appendChild(el);
       });
     }
@@ -949,6 +985,18 @@
   function closeDash(){ document.getElementById('dashOverlay').classList.remove('open'); }
 
   // ---------- ENROLLMENT / CHECKOUT — connecté au vrai backend (formations gratuites) ----------
+  // ---------- PAIEMENT MOBILE MONEY (USSD manuel — MTN MoMo / Moov, confirmation par WhatsApp) ----------
+  function openUSSDPay(title, amount){
+    document.getElementById('ussdTitle').textContent = title;
+    document.getElementById('ussdAmount').textContent = amount.toLocaleString('fr-FR') + ' FCFA';
+    document.getElementById('ussdMtn').textContent = '*880*41*573753*' + amount + '*1#';
+    document.getElementById('ussdMoov').textContent = '*855*4*1*329807*' + amount + '*1#';
+    var msg = encodeURIComponent('Bonjour Gevlon, je viens de payer ' + amount + ' FCFA pour : ' + title + '. Voici ma preuve de paiement :');
+    document.getElementById('ussdWhatsapp').href = 'https://wa.me/2290152798080?text=' + msg;
+    document.getElementById('ussdOverlay').classList.add('open');
+  }
+  function closeUSSDPay(){ document.getElementById('ussdOverlay').classList.remove('open'); }
+
   function openEnroll(title, price){
     document.getElementById('enrollStep1').style.display='block';
     document.getElementById('enrollStep2').style.display='none';
@@ -1057,7 +1105,7 @@
   var FAQ = [
     {k:['gratuit','prix formation','combien coute la formation','cout formation'], a:"La formation « Santé métabolique & régime cétogène — AfroKeto™ » est gratuite en ce moment (offre de lancement, valeur normale 29 900 FCFA). Il suffit de créer votre compte pour y accéder."},
     {k:['certificat'], a:"Oui ! À la fin de la formation, vous recevez un certificat avec QR code de vérification, téléchargeable depuis votre espace personnel."},
-    {k:['ebook','recette'], a:"L'ebook « 7 jours de recettes AfroKeto™ » est offert avec la formation gratuite — vous le trouverez dans la section Bibliothèque."},
+    {k:['ebook','recette'], a:"L'ebook « 7 jours de recettes AfroKeto™ » coûte 1 000 FCFA — paiement par MTN MoMo ou Moov Money, disponible dans la section Bibliothèque."},
     {k:['diabete','glyc'], a:"Le programme No-Diabète propose un bilan à 9 900 F, un plan personnalisé à 15 000 F et un suivi mensuel à 12 000 F/mois. Une formation vidéo dédiée arrive bientôt."},
     {k:['poids','metabol','afroketo'], a:"Le programme Poids & Métabolisme (AfroKeto™/NAPSO™) propose un bilan à 9 900 F, un plan personnalisé à 15 000 F et un suivi mensuel à 10 000 F/mois."},
     {k:['sport','domicile','fit@domicile','coach'], a:"Fit@Domicile est notre programme de coaching sportif à domicile — le bilan corporel et biologique complet démarre dès 500 F."},

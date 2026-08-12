@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Paiement — Gevlon</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:'Inter',sans-serif;background:#F6F8FC;color:#131C33;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:24px;}
+  .card{background:#fff;border-radius:18px;padding:44px 34px;max-width:420px;width:100%;box-shadow:0 20px 50px rgba(0,31,92,0.12);text-align:center;}
+  h1{font-family:'Fraunces',serif;font-size:1.25rem;color:#001F5C;margin:18px 0 8px;}
+  p{font-size:0.9rem;color:#54617A;margin-bottom:20px;line-height:1.5;}
+  .spinner{width:44px;height:44px;border:4px solid #EAF0FB;border-top-color:#F9921C;border-radius:50%;margin:0 auto;animation:spin 0.9s linear infinite;}
+  @keyframes spin{to{transform:rotate(360deg);}}
+  .btn{display:inline-block;background:#F9921C;color:#001F5C;padding:13px 26px;border-radius:999px;font-weight:700;text-decoration:none;font-size:0.9rem;border:none;cursor:pointer;}
+  .btn-secondary{display:inline-block;background:transparent;color:#00308F;padding:12px 24px;border-radius:999px;font-weight:700;text-decoration:none;font-size:0.88rem;border:1.5px solid #00308F;margin-top:10px;}
+  .icon{width:56px;height:56px;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto;font-size:1.6rem;}
+  .icon.ok{background:#00308F;color:#fff;}
+  .icon.fail{background:#FCEBEB;color:#A32D2D;}
+</style>
+</head>
+<body>
+  <div class="card" id="card">
+    <div class="spinner"></div>
+    <h1>Vérification du paiement…</h1>
+    <p>Un instant, on confirme votre paiement auprès de FedaPay.</p>
+  </div>
+
+  <script>
+    var API_BASE = 'https://gevlon-backend-production.up.railway.app';
+    var params = new URLSearchParams(location.search);
+    var paymentId = params.get('paymentId');
+    var token = params.get('token'); // transmis depuis index.html au moment du paiement
+
+    function showResult(ok){
+      var card = document.getElementById('card');
+      if(ok){
+        card.innerHTML =
+          '<div class="icon ok">✓</div>' +
+          '<h1>Paiement confirmé !</h1>' +
+          '<p>Votre ebook a été débloqué. Le téléchargement démarre automatiquement.</p>' +
+          '<a class="btn" href="afroketo-7-jours-recettes.pdf" download>📥 Télécharger l\'ebook</a><br>' +
+          '<a class="btn-secondary" href="index.html">Retour au site</a>';
+        var a = document.createElement('a');
+        a.href = 'afroketo-7-jours-recettes.pdf';
+        a.download = 'afroketo-7-jours-recettes.pdf';
+        document.body.appendChild(a);
+        a.click();
+      } else {
+        card.innerHTML =
+          '<div class="icon fail">!</div>' +
+          '<h1>Paiement non confirmé</h1>' +
+          '<p>Nous n\'avons pas encore reçu la confirmation. Si vous venez de payer, patientez une minute puis réessayez, ou contactez-nous.</p>' +
+          '<button class="btn" onclick="location.reload()">Réessayer</button><br>' +
+          '<a class="btn-secondary" href="https://wa.me/2290152798080" target="_blank" rel="noopener">Contacter le support</a>';
+      }
+    }
+
+    async function checkStatus(attempt){
+      if(!paymentId || !token){ showResult(false); return; }
+      try{
+        var res = await fetch(API_BASE + '/api/payment/status/' + paymentId, {
+          headers: { 'Authorization': 'Bearer ' + token }
+        });
+        var data = await res.json();
+        if(data.status === 'success'){ showResult(true); return; }
+        if(attempt < 8){
+          setTimeout(function(){ checkStatus(attempt + 1); }, 2500);
+        } else {
+          showResult(false);
+        }
+      }catch(e){
+        showResult(false);
+      }
+    }
+    checkStatus(0);
+  </script>
+</body>
+</html>

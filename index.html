@@ -556,7 +556,7 @@
         <p>Un plan de repas complet avec des ingrédients locaux et accessibles, 7 journées de recettes (petit-déjeuner, déjeuner, dîner, collation) et une liste de courses prête à imprimer.</p>
         <div class="ebook-footer">
           <div class="ebook-price">1 000 FCFA</div>
-          <a href="#" class="btn-secondary" onclick="openUSSDPay('Ebook — 7 jours de recettes AfroKeto™', 1000); return false;">💳 Acheter l'ebook</a>
+          <a href="#" class="btn-secondary" onclick="buyEbook(); return false;">💳 Acheter l'ebook — paiement sécurisé</a>
         </div>
       </div>
     </div>
@@ -931,6 +931,10 @@
     accessToken = data.token;
     currentUser = data.user;
     updateAccountUI();
+    if(window.pendingEbookPurchase){
+      window.pendingEbookPurchase = false;
+      launchEbookPayment();
+    }
   }
   function logoutAccount(){
     currentUser = null;
@@ -985,6 +989,28 @@
   function closeDash(){ document.getElementById('dashOverlay').classList.remove('open'); }
 
   // ---------- ENROLLMENT / CHECKOUT — connecté au vrai backend (formations gratuites) ----------
+  // ---------- ACHAT EBOOK — vrai paiement FedaPay (Mobile Money directement sur le site) ----------
+  async function buyEbook(){
+    if(!currentUser){
+      window.pendingEbookPurchase = true;
+      openAccount('signup');
+      return;
+    }
+    await launchEbookPayment();
+  }
+  async function launchEbookPayment(){
+    try{
+      var data = await apiFetch('/api/payment/init', { method:'POST', body: JSON.stringify({ courseSlug: 'ebook-afroketo-7-jours' }) });
+      if(data.paymentUrl){
+        window.location.href = data.paymentUrl;
+      } else {
+        alert("Impossible de démarrer le paiement pour le moment. Réessayez dans un instant.");
+      }
+    }catch(err){
+      alert(err.message || "Impossible de démarrer le paiement pour le moment.");
+    }
+  }
+
   // ---------- PAIEMENT MOBILE MONEY (USSD manuel — MTN MoMo / Moov, confirmation par WhatsApp) ----------
   function openUSSDPay(title, amount){
     document.getElementById('ussdTitle').textContent = title;

@@ -1112,11 +1112,25 @@
     var originalText = btn.textContent;
 
     if(price === -1){
-      // Liste d'attente : pas encore branchée à une vraie route serveur, on garde le comportement local pour l'instant
+      var wlName = currentUser ? currentUser.name : document.getElementById('enrollName').value.trim();
+      var wlEmail = currentUser ? currentUser.email : document.getElementById('enrollEmail').value.trim();
+      if(!wlName || !wlEmail){
+        showAccError('Merci de renseigner votre nom et votre email.');
+        return;
+      }
+      btn.textContent = 'Un instant…'; btn.disabled = true;
+      try{
+        await fetch(API_BASE + '/api/waitlist', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ name: wlName, email: wlEmail, interest: window.currentEnrollTitle })
+        });
+      }catch(e){ /* même en cas d'échec réseau, on affiche quand même la confirmation — pas bloquant pour l'utilisateur */ }
       document.getElementById('enrollStep1').style.display='none';
       document.getElementById('enrollStep2').style.display='block';
       document.getElementById('enrollSuccessMsg').textContent = 'Vous êtes sur la liste — on vous écrit dès que c\'est prêt.';
       document.getElementById('enrollGoToCourse').style.display = 'none';
+      btn.textContent = originalText; btn.disabled = false;
       return;
     }
 

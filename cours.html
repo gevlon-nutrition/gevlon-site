@@ -146,12 +146,25 @@
       <a href="index.html" class="back-link">← Accueil</a>
       <img id="logoNav" alt="Gevlon">
     </div>
+    <div id="headAccount" style="font-size:0.82rem;font-weight:600;color:var(--navy);"></div>
     <div class="head-progress">
       <span id="progressLabel">0 / 8 modules</span>
       <div class="head-bar"><div class="head-bar-fill" id="headBarFill"></div></div>
     </div>
   </div>
 </header>
+
+<!-- Bandeau de connexion si on arrive sans lien personnel -->
+<div id="loginBanner" style="display:none;background:#FDF3E4;border-bottom:1px solid #F3D9A8;padding:10px 24px;text-align:center;font-size:0.85rem;color:#131C33;">
+  Vous n'êtes pas connecté(e) — votre progression ne sera pas sauvegardée.
+  <a href="#" onclick="showInlineLogin(); return false;" style="color:#00308F;font-weight:700;text-decoration:underline;">Se connecter</a>
+  <div id="inlineLoginForm" style="display:none;max-width:340px;margin:12px auto 0;text-align:left;">
+    <input type="email" id="inlineEmail" placeholder="Email" style="width:100%;padding:9px 12px;border-radius:8px;border:1.5px solid #EAF0FB;margin-bottom:8px;font-family:'Inter',sans-serif;">
+    <input type="password" id="inlinePassword" placeholder="Mot de passe" style="width:100%;padding:9px 12px;border-radius:8px;border:1.5px solid #EAF0FB;margin-bottom:8px;font-family:'Inter',sans-serif;">
+    <button onclick="submitInlineLogin()" style="width:100%;background:#F9921C;color:#001F5C;border:none;padding:10px;border-radius:8px;font-weight:700;cursor:pointer;">Se connecter</button>
+    <div id="inlineLoginError" style="color:#A32D2D;font-size:0.78rem;margin-top:6px;"></div>
+  </div>
+</div>
 
 <div class="layout">
   <nav class="sidebar" id="sidebar"></nav>
@@ -2896,7 +2909,8 @@ async function saveProgressToServer(){
 
 async function loadProgressAndStart(){
   if(!authToken){
-    // Pas de compte connecté transmis : on démarre normalement, sans sauvegarde possible.
+    // Pas de compte connecté transmis : afficher le bandeau pour se connecter, démarrer en mode invité.
+    document.getElementById('loginBanner').style.display = 'block';
     renderSidebar(); renderModule(0); updateHeaderProgress();
     return;
   }
@@ -2905,6 +2919,10 @@ async function loadProgressAndStart(){
     if(!res.ok) throw new Error('unauthorized');
     var data = await res.json();
     if(data.user && data.user.name) learnerName = data.user.name;
+    document.getElementById('headAccount').textContent = 'Bonjour, ' + (data.user.name || '').split(' ')[0];
+    saveTokenToCourseUrl();
+    var backLink = document.querySelector('.back-link');
+    if(backLink) backLink.href = 'index.html?token=' + encodeURIComponent(authToken);
     var enrollment = (data.courses || []).find(function(c){ return c.slug === courseSlug; });
 
     if(enrollment){
@@ -2919,8 +2937,43 @@ async function loadProgressAndStart(){
     renderModule(Math.min(doneCount || 0, MODULES.length - 1));
     updateHeaderProgress();
   }catch(e){
-    // Le token n'est plus valide ou le serveur est injoignable : on démarre quand même, sans sauvegarde.
+    // Le token n'est plus valide ou le serveur est injoignable : bandeau de connexion + démarrage invité.
+    authToken = null;
+    document.getElementById('loginBanner').style.display = 'block';
     renderSidebar(); renderModule(0); updateHeaderProgress();
+  }
+}
+
+function saveTokenToCourseUrl(){
+  if(!authToken) return;
+  var url = new URL(window.location.href);
+  url.searchParams.set('token', authToken);
+  url.searchParams.set('slug', courseSlug);
+  window.history.replaceState(null, '', url.toString());
+}
+
+function showInlineLogin(){
+  document.getElementById('inlineLoginForm').style.display = 'block';
+}
+async function submitInlineLogin(){
+  var email = document.getElementById('inlineEmail').value.trim();
+  var pass = document.getElementById('inlinePassword').value.trim();
+  var errEl = document.getElementById('inlineLoginError');
+  errEl.textContent = '';
+  if(!email || !pass){ errEl.textContent = 'Entrez votre email et mot de passe.'; return; }
+  try{
+    var res = await fetch(API_BASE + '/api/auth/login', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email: email, password: pass })
+    });
+    var data = await res.json();
+    if(!res.ok) throw new Error(data.error || 'Connexion impossible.');
+    authToken = data.token;
+    document.getElementById('loginBanner').style.display = 'none';
+    await loadProgressAndStart();
+  }catch(e){
+    errEl.textContent = e.message || 'Connexion impossible.';
   }
 }
 

@@ -687,6 +687,14 @@
     </div>
     <h4 style="font-size:0.8rem;text-transform:uppercase;letter-spacing:0.05em;color:var(--ink-soft);margin-bottom:12px;">Mes formations</h4>
     <div id="dashCourses" style="display:flex;flex-direction:column;gap:14px;margin-bottom:20px;"></div>
+    <div style="background:var(--navy-soft);border-radius:10px;padding:14px 16px;margin-bottom:16px;">
+      <div style="font-size:0.82rem;font-weight:700;color:var(--navy-deep);margin-bottom:6px;">🔗 Rester connecté(e)</div>
+      <p style="font-size:0.78rem;color:var(--ink-soft);margin-bottom:10px;line-height:1.4;">
+        Mettez cette page en favori (Ctrl+D) pour retrouver automatiquement votre compte et votre progression la prochaine fois — sans avoir à vous reconnecter.
+        <br><b>Ne partagez jamais ce lien</b>, il donne accès à votre compte.
+      </p>
+      <button class="btn-secondary" style="width:100%;font-size:0.82rem;padding:9px;" onclick="copyMyLink()">📋 Copier mon lien personnel</button>
+    </div>
     <button class="btn-secondary" style="width:100%;" onclick="logoutAccount()">Se déconnecter</button>
   </div>
 </div>
@@ -931,9 +939,38 @@
     accessToken = data.token;
     currentUser = data.user;
     updateAccountUI();
+    saveTokenToUrl();
     if(window.pendingEbookPurchase){
       window.pendingEbookPurchase = false;
       launchEbookPayment();
+    }
+  }
+  function saveTokenToUrl(){
+    // Garde la session dans l'adresse de la page : si l'utilisateur met cette page en
+    // favori ou la retrouve dans son historique, il reste connecté sans se reconnecter.
+    if(!accessToken) return;
+    var url = new URL(window.location.href);
+    url.searchParams.set('token', accessToken);
+    window.history.replaceState(null, '', url.toString());
+  }
+  function clearTokenFromUrl(){
+    var url = new URL(window.location.href);
+    url.searchParams.delete('token');
+    window.history.replaceState(null, '', url.toString());
+  }
+  async function tryAutoLoginFromUrl(){
+    var url = new URL(window.location.href);
+    var t = url.searchParams.get('token');
+    if(!t) return;
+    accessToken = t;
+    try{
+      var data = await apiFetch('/api/me', { method:'GET' });
+      currentUser = data.user;
+      updateAccountUI();
+    }catch(e){
+      // Le lien n'est plus valide (session expirée) — on revient à l'état déconnecté, sans bloquer la page.
+      accessToken = null;
+      clearTokenFromUrl();
     }
   }
   function logoutAccount(){
@@ -942,6 +979,7 @@
     enrolledCourses = [];
     closeDash();
     updateAccountUI();
+    clearTokenFromUrl();
   }
   function updateAccountUI(){
     var link = document.getElementById('accountLink');
@@ -987,6 +1025,14 @@
     }
   }
   function closeDash(){ document.getElementById('dashOverlay').classList.remove('open'); }
+  function copyMyLink(){
+    saveTokenToUrl();
+    navigator.clipboard.writeText(window.location.href).then(function(){
+      alert('Lien copié ! Collez-le dans vos favoris ou envoyez-le vous-même par email pour le retrouver.');
+    }).catch(function(){
+      prompt('Copiez ce lien manuellement :', window.location.href);
+    });
+  }
 
   // ---------- ENROLLMENT / CHECKOUT — connecté au vrai backend (formations gratuites) ----------
   // ---------- ACHAT EBOOK — vrai paiement FedaPay (Mobile Money directement sur le site) ----------
@@ -1108,7 +1154,8 @@
     }
   }
 
-  document.addEventListener('DOMContentLoaded', function(){
+  document.addEventListener('DOMContentLoaded', async function(){
+    await tryAutoLoginFromUrl();
     updateAccountUI();
     if(!window.matchMedia('(prefers-reduced-motion: reduce)').matches){
       document.querySelectorAll('.tilt').forEach(function(card){

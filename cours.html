@@ -2865,7 +2865,7 @@ function goToCert(){
     + '<div class="col" style="flex:0;text-align:center;"><div id="certQR"></div><div style="font-size:0.62rem;color:var(--ink-soft);margin-top:4px;">Vérifier</div></div>'
     + '</div>'
     + '</div>'
-    + '<div class="cert-actions"><button class="btn-primary" onclick="window.print()">🖨️ Télécharger / imprimer le certificat</button> <a href="afroketo-7-jours-recettes.pdf" download class="btn-secondary" style="margin-left:10px;">📥 Ebook de recettes</a></div>'
+    + '<div class="cert-actions"><button class="btn-primary" onclick="window.print()">🖨️ Télécharger / imprimer le certificat</button> <a href="#" onclick="downloadEbookFromCourse(); return false;" class="btn-secondary" style="margin-left:10px;">📥 Ebook de recettes</a></div>'
     + '</div>';
   renderCertQR(certId, learnerName || 'Votre nom', today);
   saveProgressToServer();
@@ -2941,6 +2941,26 @@ async function loadProgressAndStart(){
     authToken = null;
     document.getElementById('loginBanner').style.display = 'block';
     renderSidebar(); renderModule(0); updateHeaderProgress();
+  }
+}
+
+async function downloadEbookFromCourse(){
+  if(!authToken){
+    alert("Connectez-vous pour télécharger l'ebook.");
+    showInlineLogin();
+    return;
+  }
+  try{
+    var res = await fetch(API_BASE + '/api/download/ebook', { headers: { 'Authorization': 'Bearer ' + authToken } });
+    if(!res.ok) throw new Error('accès refusé');
+    var blob = await res.blob();
+    var url = URL.createObjectURL(blob);
+    var a = document.createElement('a');
+    a.href = url; a.download = 'afroketo-7-jours-recettes.pdf';
+    document.body.appendChild(a); a.click(); a.remove();
+    URL.revokeObjectURL(url);
+  }catch(e){
+    alert("Téléchargement impossible pour le moment.");
   }
 }
 

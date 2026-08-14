@@ -33,6 +33,20 @@
     var paymentId = params.get('paymentId');
     var token = params.get('token'); // transmis depuis index.html au moment du paiement
 
+    async function downloadProtected(){
+      try{
+        var res = await fetch(API_BASE + '/api/download/ebook', { headers: { 'Authorization': 'Bearer ' + token } });
+        if(!res.ok) throw new Error('download failed');
+        var blob = await res.blob();
+        var url = URL.createObjectURL(blob);
+        var a = document.createElement('a');
+        a.href = url; a.download = 'afroketo-7-jours-recettes.pdf';
+        document.body.appendChild(a); a.click(); a.remove();
+        URL.revokeObjectURL(url);
+      }catch(e){
+        // Le téléchargement automatique a échoué — le bouton manuel dans la carte reste disponible.
+      }
+    }
     function showResult(ok){
       var card = document.getElementById('card');
       if(ok){
@@ -40,13 +54,9 @@
           '<div class="icon ok">✓</div>' +
           '<h1>Paiement confirmé !</h1>' +
           '<p>Votre ebook a été débloqué. Le téléchargement démarre automatiquement.</p>' +
-          '<a class="btn" href="afroketo-7-jours-recettes.pdf" download>📥 Télécharger l\'ebook</a><br>' +
+          '<a class="btn" href="#" onclick="downloadProtected(); return false;">📥 Télécharger l\'ebook</a><br>' +
           '<a class="btn-secondary" href="index.html">Retour au site</a>';
-        var a = document.createElement('a');
-        a.href = 'afroketo-7-jours-recettes.pdf';
-        a.download = 'afroketo-7-jours-recettes.pdf';
-        document.body.appendChild(a);
-        a.click();
+        downloadProtected();
       } else {
         card.innerHTML =
           '<div class="icon fail">!</div>' +

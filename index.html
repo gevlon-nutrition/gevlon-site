@@ -513,7 +513,7 @@
         <div class="featured-includes">
           <span><span class="check">✓</span> Accès à vie sur mobile et ordinateur</span>
           <span><span class="check">✓</span> Certificat avec QR code de vérification</span>
-          <span><span class="check">✓</span> <a href="afroketo-7-jours-recettes.pdf" download style="color:inherit;text-decoration:underline;">Plan de repas AfroKeto™ inclus gratuitement (PDF, valeur 1 000 F)</a></span>
+          <span><span class="check">✓</span> <a href="#" onclick="downloadEbookProtected(); return false;" style="color:inherit;text-decoration:underline;">Plan de repas AfroKeto™ inclus gratuitement (PDF, valeur 1 000 F)</a></span>
           <span><span class="check">✓</span> Inscription 100% en ligne, sans contact préalable</span>
         </div>
       </div>
@@ -1036,6 +1036,29 @@
 
   // ---------- ENROLLMENT / CHECKOUT — connecté au vrai backend (formations gratuites) ----------
   // ---------- ACHAT EBOOK — vrai paiement FedaPay (Mobile Money directement sur le site) ----------
+  // ---------- TÉLÉCHARGEMENT PROTÉGÉ DE L'EBOOK (vérifié côté serveur, pas de lien public direct) ----------
+  async function downloadEbookProtected(){
+    if(!currentUser){
+      openAccount('login');
+      return;
+    }
+    try{
+      var res = await fetch(API_BASE + '/api/download/ebook', { headers: { 'Authorization': 'Bearer ' + accessToken } });
+      if(!res.ok){
+        var d = await res.json().catch(function(){ return {}; });
+        throw new Error(d.error || "Accès refusé.");
+      }
+      var blob = await res.blob();
+      var url = URL.createObjectURL(blob);
+      var a = document.createElement('a');
+      a.href = url; a.download = 'afroketo-7-jours-recettes.pdf';
+      document.body.appendChild(a); a.click(); a.remove();
+      URL.revokeObjectURL(url);
+    }catch(err){
+      alert(err.message || "Téléchargement impossible pour le moment.");
+    }
+  }
+
   async function buyEbook(){
     if(!currentUser){
       window.pendingEbookPurchase = true;

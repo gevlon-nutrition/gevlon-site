@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Confirmation d'email — Gevlon</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:'Inter',sans-serif;background:#F6F8FC;color:#131C33;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:24px;}
+  .card{background:#fff;border-radius:18px;padding:44px 34px;max-width:420px;width:100%;box-shadow:0 20px 50px rgba(0,31,92,0.12);text-align:center;}
+  h1{font-family:'Fraunces',serif;font-size:1.25rem;color:#001F5C;margin:18px 0 8px;}
+  p{font-size:0.9rem;color:#54617A;margin-bottom:20px;line-height:1.5;}
+  .icon{width:56px;height:56px;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto;font-size:1.6rem;}
+  .icon.ok{background:#00308F;color:#fff;}
+  .icon.fail{background:#FCEBEB;color:#A32D2D;}
+  .btn{display:inline-block;background:#F9921C;color:#001F5C;padding:13px 26px;border-radius:999px;font-weight:700;text-decoration:none;font-size:0.9rem;}
+</style>
+</head>
+<body>
+  <div class="card" id="card">
+    <div class="icon ok">…</div>
+    <h1>Vérification en cours…</h1>
+    <p>Un instant.</p>
+  </div>
+
+  <script>
+    var API_BASE = 'https://gevlon-backend-production.up.railway.app';
+    var token = new URLSearchParams(location.search).get('token');
+
+    async function verify(){
+      var card = document.getElementById('card');
+      if(!token){
+        card.innerHTML = '<div class="icon fail">!</div><h1>Lien invalide</h1><p>Aucun code de vérification trouvé dans ce lien.</p><a class="btn" href="index.html">Retour au site</a>';
+        return;
+      }
+      try{
+        var res = await fetch(API_BASE + '/api/auth/verify-email?token=' + encodeURIComponent(token));
+        var data = await res.json();
+        if(!res.ok) throw new Error(data.error || 'Échec de la vérification.');
+        card.innerHTML = '<div class="icon ok">✓</div><h1>Email confirmé !</h1><p>Merci ' + (data.name || '') + ', votre adresse email est maintenant vérifiée.</p><a class="btn" href="index.html">Retour au site</a>';
+      }catch(e){
+        card.innerHTML = '<div class="icon fail">!</div><h1>Lien invalide ou expiré</h1><p>' + (e.message || 'Ce lien ne fonctionne plus.') + '</p><a class="btn" href="index.html">Retour au site</a>';
+      }
+    }
+    verify();
+  </script>
+</body>
+</html>

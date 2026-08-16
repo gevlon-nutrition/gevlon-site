@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Administration — Gevlon</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:'Inter',sans-serif;background:#F6F8FC;color:#131C33;min-height:100vh;}
+  .wrap{max-width:820px;margin:0 auto;padding:40px 20px;}
+  h1{font-family:'Fraunces',serif;font-size:1.6rem;color:#001F5C;margin-bottom:24px;}
+  .card{background:#fff;border-radius:16px;padding:28px;box-shadow:0 10px 30px rgba(0,31,92,0.08);margin-bottom:20px;}
+  label{font-size:0.78rem;font-weight:700;color:#54617A;display:block;margin-bottom:6px;}
+  input,textarea{width:100%;padding:11px 14px;border-radius:9px;border:1.5px solid #EAF0FB;font-family:'Inter',sans-serif;font-size:0.92rem;margin-bottom:14px;box-sizing:border-box;}
+  textarea{min-height:90px;resize:vertical;}
+  .btn{background:#F9921C;color:#001F5C;padding:12px 22px;border-radius:999px;font-weight:700;border:none;font-size:0.88rem;cursor:pointer;}
+  .btn:disabled{opacity:0.6;cursor:not-allowed;}
+  .btn-small{background:#00308F;color:#fff;padding:8px 16px;border-radius:999px;font-weight:700;border:none;font-size:0.8rem;cursor:pointer;}
+  .stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:16px;}
+  .stat{text-align:center;}
+  .stat .num{font-family:'Fraunces',serif;font-size:1.8rem;color:#00308F;font-weight:700;}
+  .stat .label{font-size:0.78rem;color:#54617A;margin-top:4px;}
+  .wl-row{display:flex;justify-content:space-between;align-items:center;padding:14px 0;border-bottom:1px solid #EAF0FB;}
+  .wl-row:last-child{border-bottom:none;}
+  .wl-name{font-weight:700;font-size:0.92rem;}
+  .wl-meta{font-size:0.78rem;color:#54617A;}
+  .msg{font-size:0.85rem;margin-top:10px;}
+  .msg.ok{color:#1a7a3d;}
+  .msg.fail{color:#A32D2D;}
+  #notifyForm{display:none;margin-top:16px;padding-top:16px;border-top:1px dashed #EAF0FB;}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>🔐 Administration Gevlon</h1>
+
+  <div class="card" id="loginCard">
+    <label>Email</label>
+    <input type="email" id="loginEmail" placeholder="vous@email.com">
+    <label>Mot de passe</label>
+    <input type="password" id="loginPass" placeholder="••••••••">
+    <button class="btn" id="loginBtn" onclick="doLogin()">Se connecter</button>
+    <div class="msg" id="loginMsg"></div>
+  </div>
+
+  <div id="dashboard" style="display:none;">
+    <div class="card">
+      <div class="stats-grid" id="statsGrid"></div>
+    </div>
+    <div class="card">
+      <h1 style="font-size:1.1rem;margin-bottom:16px;">Liste d'attente</h1>
+      <div id="waitlistList"></div>
+      <div id="notifyForm">
+        <label>Sujet de l'email — pour : <b id="notifyInterestLabel"></b></label>
+        <input type="text" id="notifySubject" placeholder="Ex: La formation No-Diabète est disponible !">
+        <label>Message</label>
+        <textarea id="notifyMessage" placeholder="Bonjour, la formation que vous attendiez est maintenant disponible sur gevlon-nutrition.github.io/gevlon-site/ ..."></textarea>
+        <button class="btn" id="sendNotifyBtn" onclick="sendNotify()">Envoyer</button>
+        <div class="msg" id="notifyMsg"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  var API_BASE = 'https://gevlon-backend-production.up.railway.app';
+  var token = null;
+  var currentInterest = null;
+
+  async function doLogin(){
+    var email = document.getElementById('loginEmail').value.trim();
+    var pass = document.getElementById('loginPass').value.trim();
+    var msg = document.getElementById('loginMsg');
+    var btn = document.getElementById('loginBtn');
+    msg.className = 'msg'; msg.textContent = '';
+    if(!email || !pass){ msg.className='msg fail'; msg.textContent='Entrez email et mot de passe.'; return; }
+    btn.disabled = true; btn.textContent = 'Un instant…';
+    try{
+      var res = await fetch(API_BASE + '/api/auth/login', {
+        method: 'POST', headers: {'Content-Type':'application/json'},
+        body: JSON.stringify({ email: email, password: pass })
+      });
+      var data = await res.json();
+      if(!res.ok) throw new Error(data.error || 'Connexion impossible.');
+      token = data.token;
+      await loadDashboard();
+    }catch(e){
+      msg.className = 'msg fail'; msg.textContent = e.message || 'Connexion impossible.';
+    }finally{
+      btn.disabled = false; btn.textContent = 'Se connecter';
+    }
+  }
+
+  async function loadDashboard(){
+    var msg = document.getElementById('loginMsg');
+    try{
+      var statsRes = await fetch(API_BASE + '/api/admin/stats', { headers: { 'Authorization': 'Bearer ' + token } });
+      if(statsRes.status === 403){ msg.className='msg fail'; msg.textContent="Ce compte n'est pas administrateur."; return; }
+      if(!statsRes.ok) throw new Error('Erreur de chargement.');
+      var stats = await statsRes.json();
+
+      document.getElementById('statsGrid').innerHTML =
+        stat(stats.users, 'Comptes créés') +
+        stat(stats.enrollments, 'Inscriptions') +
+        stat(stats.certificates, 'Certificats délivrés') +
+        stat(stats.payments, 'Paiements réussis') +
+        stat(stats.waitlist, "Liste d'attente");
+
+      var wlRes = await fetch(API_BASE + '/api/admin/waitlist', { headers: { 'Authorization': 'Bearer ' + token } });
+      var wlData = await wlRes.json();
+      var wlWrap = document.getElementById('waitlistList');
+      if(wlData.groups.length === 0){
+        wlWrap.innerHTML = '<p style="color:#54617A;font-size:0.88rem;">Personne sur liste d\'attente pour l\'instant.</p>';
+      } else {
+        wlWrap.innerHTML = wlData.groups.map(function(g){
+          return '<div class="wl-row"><div><div class="wl-name">'+g.interest+'</div>'
+            + '<div class="wl-meta">'+g.total+' personne(s) — '+g.pending+' pas encore notifiée(s)</div></div>'
+            + '<button class="btn-small" onclick="openNotify(\''+g.interest.replace(/'/g,"\\'")+'\')">Notifier</button></div>';
+        }).join('');
+      }
+
+      document.getElementById('loginCard').style.display = 'none';
+      document.getElementById('dashboard').style.display = 'block';
+    }catch(e){
+      msg.className = 'msg fail'; msg.textContent = e.message || 'Erreur de chargement.';
+    }
+  }
+
+  function stat(num, label){
+    return '<div class="stat"><div class="num">'+num+'</div><div class="label">'+label+'</div></div>';
+  }
+
+  function openNotify(interest){
+    currentInterest = interest;
+    document.getElementById('notifyInterestLabel').textContent = interest;
+    document.getElementById('notifyForm').style.display = 'block';
+    document.getElementById('notifyMsg').textContent = '';
+  }
+
+  async function sendNotify(){
+    var subject = document.getElementById('notifySubject').value.trim();
+    var message = document.getElementById('notifyMessage').value.trim();
+    var msg = document.getElementById('notifyMsg');
+    var btn = document.getElementById('sendNotifyBtn');
+    if(!subject || !message){ msg.className='msg fail'; msg.textContent='Sujet et message requis.'; return; }
+    btn.disabled = true; btn.textContent = 'Envoi en cours…';
+    try{
+      var res = await fetch(API_BASE + '/api/admin/notify-waitlist', {
+        method: 'POST',
+        headers: { 'Content-Type':'application/json', 'Authorization': 'Bearer ' + token },
+        body: JSON.stringify({ interest: currentInterest, subject: subject, message: message })
+      });
+      var data = await res.json();
+      if(!res.ok) throw new Error(data.error || 'Échec de l\'envoi.');
+      msg.className = 'msg ok';
+      msg.textContent = data.sent + ' email(s) envoyé(s) sur ' + data.total + '.';
+      await loadDashboard();
+      document.getElementById('notifyForm').style.display = 'none';
+    }catch(e){
+      msg.className = 'msg fail'; msg.textContent = e.message || 'Échec de l\'envoi.';
+    }finally{
+      btn.disabled = false; btn.textContent = 'Envoyer';
+    }
+  }
+</script>
+</body>
+</html>

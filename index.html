@@ -1341,6 +1341,31 @@
     }
   }
 </script>
+async function subscribeNewsletter(){
+  var email = document.getElementById('newsletterEmail').value.trim();
+  var msgEl = document.getElementById('newsletterMsg');
+  var btn = document.getElementById('newsletterBtn');
+  if(!email){ msgEl.textContent = 'Merci de renseigner votre email.'; msgEl.style.color = '#A32D2D'; return; }
+
+  btn.disabled = true; btn.textContent = 'Un instant…';
+  try{
+    var res = await fetch(API_BASE + '/api/newsletter/subscribe', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email: email })
+    });
+    var data = await res.json();
+    if(!res.ok) throw new Error(data.error || 'Erreur, réessayez.');
+    msgEl.textContent = '✅ ' + data.message;
+    msgEl.style.color = '#1a7a3d';
+    document.getElementById('newsletterEmail').value = '';
+  }catch(err){
+    msgEl.textContent = err.message || 'Erreur, réessayez.';
+    msgEl.style.color = '#A32D2D';
+  }finally{
+    btn.disabled = false; btn.textContent = "S'abonner";
+  }
+}  
 
 </body>
 </html>

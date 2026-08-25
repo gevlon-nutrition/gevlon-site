@@ -970,6 +970,10 @@
     document.getElementById('signupNameWrap').style.display = tab==='signup' ? 'block' : 'none';
     document.getElementById('accBtn').textContent = tab==='signup' ? 'Créer mon compte' : 'Se connecter';
   }
+  function toggleMobileMenu(){
+  document.getElementById('mobileMenu').classList.toggle('open');
+  document.getElementById('navBurgerBtn').classList.toggle('open');
+}
   function openAccount(mode){
     if(currentUser){ openDash(); return; }
     setAccountTab(mode || 'login');

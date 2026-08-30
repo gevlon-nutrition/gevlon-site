@@ -79,10 +79,10 @@
   }
   .nav-cta:hover{background:var(--orange);transform:translateY(-1px);}
   .nav-burger{display:none;background:none;border:none;cursor:pointer;padding:6px;flex-shrink:0;}
-.nav-burger span{display:block;width:24px;height:2px;background:var(--navy-deep);margin:5px 0;border-radius:2px;}
-.mobile-menu{display:none;flex-direction:column;background:#fff;border-bottom:1px solid rgba(0,48,143,0.1);}
-.mobile-menu a{padding:14px 28px;border-bottom:1px solid var(--navy-soft);font-weight:600;color:var(--ink);}
-.mobile-menu.open{display:flex;}
+  .nav-burger span{display:block;width:24px;height:2px;background:var(--navy-deep);margin:5px 0;border-radius:2px;}
+  .mobile-menu{display:none;flex-direction:column;background:#fff;border-bottom:1px solid rgba(0,48,143,0.1);}
+  .mobile-menu a{padding:14px 28px;border-bottom:1px solid var(--navy-soft);font-weight:600;color:var(--ink);}
+  .mobile-menu.open{display:flex;}
 
   /* HERO — image de marque en vrai arrière-plan */
   .hero{
@@ -418,19 +418,19 @@
       <a href="#" id="accountLink" onclick="openAccount('login'); return false;" style="font-size:0.9rem;font-weight:600;color:var(--navy);">Se connecter</a>
       <a href="#" class="nav-cta" onclick="openEnroll('Santé métabolique & régime cétogène — AfroKeto™', 0); return false;">Commencer gratuitement</a>
       <button class="nav-burger" id="navBurgerBtn" onclick="toggleMobileMenu()" aria-label="Ouvrir le menu">
-  <span></span><span></span><span></span>
-</button>
+        <span></span><span></span><span></span>
+      </button>
     </div>
   </nav>
   <div class="mobile-menu" id="mobileMenu">
-  <a href="#programmes">Programmes</a>
-  <a href="#academie">Académie</a>
-  <a href="#bibliotheque">Bibliothèque</a>
-  <a href="https://gevlon-nutrition.github.io/gevlon-forms/methode.html" target="_blank" rel="noopener">Méthode</a>
-  <a href="https://gevlon-nutrition.github.io/gevlon-forms/parcours.html#espace-client" target="_blank" rel="noopener">Consultation</a>
-  <a href="https://shop.gevlon.com" target="_blank" rel="noopener">Boutique</a>
-  <a href="#" id="mobileAccountLink" onclick="openAccount('login'); return false;">Se connecter</a>
-</div>
+    <a href="#programmes">Programmes</a>
+    <a href="#academie">Académie</a>
+    <a href="#bibliotheque">Bibliothèque</a>
+    <a href="https://gevlon-nutrition.github.io/gevlon-forms/methode.html" target="_blank" rel="noopener">Méthode</a>
+    <a href="https://gevlon-nutrition.github.io/gevlon-forms/parcours.html#espace-client" target="_blank" rel="noopener">Consultation</a>
+    <a href="https://shop.gevlon.com" target="_blank" rel="noopener">Boutique</a>
+    <a href="#" id="mobileAccountLink" onclick="openAccount('login'); return false;">Se connecter</a>
+  </div>
 </header>
 
 <section class="hero">
@@ -650,6 +650,7 @@
     </div>
   </div>
 </section>
+
 <section class="section">
   <div class="wrap">
     <div class="final-cta" style="background:var(--navy-soft);color:var(--navy-deep);">
@@ -664,7 +665,7 @@
     </div>
     <p id="newsletterMsg" style="text-align:center;margin-top:14px;font-size:0.85rem;"></p>
   </div>
-</section>  
+</section>
 
 <footer>
   <div class="wrap">
@@ -940,7 +941,7 @@
   function goToCourseLink(e){
     if(accessToken){
       e.preventDefault();
-      window.location.href = 'cours.html?token=' + encodeURIComponent(accessToken) + '&slug=' + encodeURIComponent(window.currentEnrollSlug || 'sante-metabolique-afroketo');
+      window.location.href = (window.currentEnrollPage || 'cours.html') + '?token=' + encodeURIComponent(accessToken) + '&slug=' + encodeURIComponent(window.currentEnrollSlug || 'sante-metabolique-afroketo');
     }
     // sinon, laisse le lien normal vers cours.html (mode invité, sans sauvegarde)
   }
@@ -971,9 +972,10 @@
     document.getElementById('accBtn').textContent = tab==='signup' ? 'Créer mon compte' : 'Se connecter';
   }
   function toggleMobileMenu(){
-  document.getElementById('mobileMenu').classList.toggle('open');
-  document.getElementById('navBurgerBtn').classList.toggle('open');
-}
+    document.getElementById('mobileMenu').classList.toggle('open');
+    document.getElementById('navBurgerBtn').classList.toggle('open');
+  }
+
   function openAccount(mode){
     if(currentUser){ openDash(); return; }
     setAccountTab(mode || 'login');
@@ -1177,7 +1179,7 @@
   }
   function closeUSSDPay(){ document.getElementById('ussdOverlay').classList.remove('open'); }
 
-  function openEnroll(title, price){
+  function openEnroll(title, price, slug, coursePage){
     document.getElementById('enrollStep1').style.display='block';
     document.getElementById('enrollStep2').style.display='none';
     document.getElementById('enrollTitle').textContent = title;
@@ -1209,7 +1211,8 @@
     }
     window.currentEnrollPrice = price;
     window.currentEnrollTitle = title;
-    window.currentEnrollSlug = 'sante-metabolique-afroketo';
+    window.currentEnrollSlug = slug || 'sante-metabolique-afroketo';
+    window.currentEnrollPage = coursePage || 'cours.html';
     clearAccError();
     document.getElementById('enrollOverlay').classList.add('open');
   }
@@ -1362,7 +1365,8 @@
       chatHistory.push({role:'assistant', content:fallback});
     }
   }
-  </script>
+</script>
+
 <script>
 async function subscribeNewsletter(){
   var email = document.getElementById('newsletterEmail').value.trim();
@@ -1388,8 +1392,8 @@ async function subscribeNewsletter(){
   }finally{
     btn.disabled = false; btn.textContent = "S'abonner";
   }
-}  
-  </script>
+}
+</script>
 
 </body>
 </html>

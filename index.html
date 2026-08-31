@@ -121,6 +121,31 @@
   .hero .stat .num{color:var(--white);}
   .hero .stat .label{color:rgba(255,255,255,0.68);}
   .hero-ctas{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:48px;}
+
+  .search-portal{position:relative;max-width:520px;margin-bottom:30px;}
+  .search-input-wrap{
+    display:flex;align-items:center;gap:12px;background:rgba(255,255,255,0.95);
+    border-radius:999px;padding:15px 22px;box-shadow:0 10px 30px rgba(0,15,50,0.18);
+  }
+  .search-input-wrap input{
+    border:none;outline:none;background:transparent;flex:1;font-family:'Inter',sans-serif;
+    font-size:0.96rem;color:var(--ink);
+  }
+  .search-input-wrap input::placeholder{color:var(--ink-soft);}
+  .search-results{
+    position:absolute;top:calc(100% + 8px);left:0;right:0;background:#fff;border-radius:14px;
+    box-shadow:0 20px 45px rgba(0,15,50,0.25);overflow:hidden;z-index:20;display:none;max-height:360px;overflow-y:auto;
+  }
+  .search-results.open{display:block;}
+  .search-result-item{
+    display:block;padding:14px 20px;border-bottom:1px solid var(--navy-soft);text-align:left;
+  }
+  .search-result-item:last-child{border-bottom:none;}
+  .search-result-item:hover{background:var(--navy-soft);}
+  .search-result-cat{font-size:0.7rem;font-weight:700;color:var(--orange-text);text-transform:uppercase;letter-spacing:0.04em;}
+  .search-result-title{font-size:0.92rem;font-weight:700;color:var(--navy-deep);margin:2px 0;}
+  .search-result-desc{font-size:0.8rem;color:var(--ink-soft);}
+  .search-empty{padding:18px 20px;font-size:0.85rem;color:var(--ink-soft);}
   .btn-primary{
     background:var(--orange);color:var(--navy-deep);padding:15px 28px;border-radius:999px;
     font-weight:700;font-size:0.96rem;box-shadow:0 8px 20px rgba(249,146,28,0.32);
@@ -440,6 +465,13 @@
       <span class="eyebrow">Nutrition & Lifestyle — Académie</span>
       <h1>Nourrir la vie, <em>cultiver la longévité</em>.</h1>
       <p class="sub">Des formations scientifiques et pratiques — AfroKeto™, NAPSO™ — pour reprendre le contrôle de votre poids, votre glycémie et votre énergie, avec des experts qui comprennent votre quotidien.</p>
+      <div class="search-portal" id="searchPortal">
+        <div class="search-input-wrap">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="11" cy="11" r="7" stroke="#54617A" stroke-width="2"/><path d="M21 21l-4-4" stroke="#54617A" stroke-width="2" stroke-linecap="round"/></svg>
+          <input type="text" id="searchInput" placeholder="Cherchez un programme, un cours, une ressource…" oninput="runSiteSearch(this.value)" onfocus="runSiteSearch(this.value)">
+        </div>
+        <div class="search-results" id="searchResults"></div>
+      </div>
       <div class="hero-ctas">
         <a href="#" class="btn-primary" onclick="openEnroll('Santé métabolique & régime cétogène — AfroKeto™', 0); return false;">Commencer gratuitement</a>
         <a href="#academie" class="btn-secondary">Voir la formation</a>
@@ -1007,6 +1039,49 @@
     document.getElementById('signupNameWrap').style.display = tab==='signup' ? 'block' : 'none';
     document.getElementById('accBtn').textContent = tab==='signup' ? 'Créer mon compte' : 'Se connecter';
   }
+  var SEARCH_INDEX = [
+    { cat: "Programme", title: "Poids & Métabolisme", desc: "Retrouvez votre poids santé grâce à AfroKeto™ et un plan NAPSO™ personnalisé.", url: "#programmes", keywords: "poids metabolisme afroketo perte grossir maigrir mincir" },
+    { cat: "Programme", title: "No-Diabète", desc: "Régularisez votre glycémie naturellement grâce à un plan alimentaire personnalisé.", url: "#programmes", keywords: "diabete diabetes glycemie sucre insuline" },
+    { cat: "Programme", title: "Fit@Domicile", desc: "Bougez efficacement chez vous avec un coach, sans matériel compliqué.", url: "#programmes", keywords: "sport fitness activite physique coach domicile exercice" },
+    { cat: "Formation gratuite", title: "Santé métabolique & régime cétogène — AfroKeto™", desc: "24 leçons sur le métabolisme, l'insulinorésistance et le régime cétogène adapté localement.", url: "#academie", keywords: "afroketo ceto ketogene metabolisme insulinoresistance formation cours academie" },
+    { cat: "Formation gratuite", title: "Surpoids & Obésité : comprendre son mode de vie", desc: "15 leçons scientifiques : hormones, sommeil, stress, microbiote — sans généralités.", url: "#academie", keywords: "surpoids obesite obésité science hormones leptine insuline sommeil stress cortisol microbiote formation cours" },
+    { cat: "Bibliothèque", title: "Ebook AfroKeto™ — 7 jours de recettes", desc: "Un plan de repas complet avec des ingrédients locaux et accessibles.", url: "#bibliotheque", keywords: "ebook recette recettes cuisine repas plan alimentaire" },
+    { cat: "Gevlon", title: "Notre méthode NAPSO™", desc: "Les 5 piliers du protocole Gevlon : Nutrition, Activité, Physiologie, Sommeil, Objectifs.", url: "https://gevlon-nutrition.github.io/gevlon-forms/methode.html", keywords: "methode napso protocole piliers" },
+    { cat: "Gevlon", title: "Code alimentaire", desc: "La liste verte, orange et rouge des aliments selon le protocole Gevlon.", url: "https://gevlon-nutrition.github.io/gevlon-forms/code-alimentaire.html", keywords: "code alimentaire aliments liste verte orange rouge" },
+    { cat: "Gevlon", title: "Parcours & outils", desc: "Tous les outils et parcours proposés par Gevlon Nutrition.", url: "https://gevlon-nutrition.github.io/gevlon-forms/parcours.html", keywords: "parcours outils bilan consultation rdv rendez-vous" },
+    { cat: "Gevlon", title: "Équipe & réseau", desc: "Découvrez l'équipe et le réseau de professionnels Gevlon.", url: "https://gevlon-nutrition.github.io/gevlon-forms/equipe.html", keywords: "equipe reseau coach praticien professionnel point sante" },
+    { cat: "Boutique", title: "Boutique Gevlon", desc: "Compléments, produits minceur, vitalité et beauté.", url: "https://shop.gevlon.com", keywords: "boutique shop produit complement acheter" },
+  ];
+
+  function runSiteSearch(q){
+    var resultsEl = document.getElementById('searchResults');
+    var query = (q || '').trim().toLowerCase();
+    if(query.length < 2){ resultsEl.classList.remove('open'); resultsEl.innerHTML = ''; return; }
+    var matches = SEARCH_INDEX.filter(function(item){
+      var haystack = (item.title + ' ' + item.desc + ' ' + item.keywords).toLowerCase();
+      return haystack.indexOf(query) !== -1;
+    });
+    if(matches.length === 0){
+      resultsEl.innerHTML = '<div class="search-empty">Aucun résultat pour « '+q+' ». Essayez « diabète », « poids », « recette »…</div>';
+    } else {
+      resultsEl.innerHTML = matches.slice(0, 8).map(function(item){
+        var external = item.url.indexOf('http') === 0;
+        return '<a class="search-result-item" href="'+item.url+'"'+(external ? ' target="_blank" rel="noopener"' : '')+'>'
+          + '<div class="search-result-cat">'+item.cat+'</div>'
+          + '<div class="search-result-title">'+item.title+'</div>'
+          + '<div class="search-result-desc">'+item.desc+'</div>'
+          + '</a>';
+      }).join('');
+    }
+    resultsEl.classList.add('open');
+  }
+  document.addEventListener('click', function(e){
+    var portal = document.getElementById('searchPortal');
+    if(portal && !portal.contains(e.target)){
+      document.getElementById('searchResults').classList.remove('open');
+    }
+  });
+
   function toggleMobileMenu(){
     document.getElementById('mobileMenu').classList.toggle('open');
     document.getElementById('navBurgerBtn').classList.toggle('open');

@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Surpoids & Obésité : comprendre son mode de vie — Gevlon Académie</title>
-<meta name="description" content="Formation scientifique Gevlon : 15 leçons approfondies sur les mécanismes physiologiques du surpoids et de l'obésité, avec certificat.">
+<title>Recettes AfroKeto™ — Gevlon Académie</title>
+<meta name="description" content="Module pratique Gevlon : 15 leçons de recettes cétogènes locales, protocole AfroKeto™, avec certificat.">
 <link rel="icon" id="favicon" href="">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -18,7 +18,7 @@
     --green:#1a7a3d; --green-soft:#DCF5E3;
   }
   *{box-sizing:border-box;margin:0;padding:0;}
-  body{font-family:'Inter',sans-serif;background:var(--paper);color:var(--ink);line-height:1.7;}
+  body{font-family:'Inter',sans-serif;background:var(--paper);color:var(--ink);line-height:1.6;}
   h1,h2,h3{font-family:'Fraunces',serif;font-weight:600;color:var(--navy-deep);}
   a{color:inherit;}
   img{max-width:100%;display:block;}
@@ -37,7 +37,7 @@
   .head-bar{width:140px;height:7px;background:var(--navy-soft);border-radius:999px;overflow:hidden;}
   .head-bar-fill{height:100%;background:var(--orange);width:0%;transition:width .4s ease;}
 
-  .layout{max-width:1180px;margin:0 auto;padding:32px 24px 80px;display:grid;grid-template-columns:290px 1fr;gap:32px;}
+  .layout{max-width:1240px;margin:0 auto;padding:32px 24px 80px;display:grid;grid-template-columns:290px 1fr;gap:32px;}
   @media (max-width:900px){ .layout{grid-template-columns:1fr;} .sidebar{order:2;} }
 
   .sidebar{
@@ -47,42 +47,47 @@
   .sidebar h4{font-size:0.75rem;text-transform:uppercase;letter-spacing:0.05em;color:var(--ink-soft);padding:6px 10px 12px;}
   .mod-item{
     display:flex;align-items:center;gap:12px;padding:12px 10px;border-radius:10px;cursor:pointer;
-    font-size:0.86rem;font-weight:600;color:var(--ink);transition:background .15s ease;
+    font-size:0.88rem;font-weight:600;color:var(--ink);transition:background .15s ease;
   }
   .mod-item:hover{background:var(--navy-soft);}
   .mod-item.active{background:var(--navy);color:#fff;}
   .mod-check{
     width:24px;height:24px;border-radius:50%;flex-shrink:0;background:var(--navy-soft);color:var(--navy);
-    display:flex;align-items:center;justify-content:center;font-size:0.68rem;font-weight:700;font-family:'Space Grotesk',monospace;
+    display:flex;align-items:center;justify-content:center;font-size:0.7rem;font-weight:700;font-family:'Space Grotesk',monospace;
   }
   .mod-item.active .mod-check{background:rgba(255,255,255,0.2);color:#fff;}
   .mod-item.done .mod-check{background:var(--green);color:#fff;}
   .mod-title{flex:1;}
-  .mod-sub{display:block;font-size:0.7rem;font-weight:500;color:var(--ink-soft);margin-top:2px;}
+  .mod-sub{display:block;font-size:0.72rem;font-weight:500;color:var(--ink-soft);margin-top:2px;}
   .mod-item.active .mod-sub{color:rgba(255,255,255,0.75);}
 
-  .main-panel{background:var(--white);border-radius:18px;padding:44px 48px;border:1px solid rgba(0,48,143,0.08);max-width:760px;}
-  @media (max-width:600px){ .main-panel{padding:28px 22px;} }
-  .main-panel h2{font-size:1.55rem;margin-bottom:6px;line-height:1.25;}
-  .lesson-tag{font-size:0.78rem;font-weight:700;color:var(--orange-text);text-transform:uppercase;letter-spacing:0.04em;margin-bottom:10px;display:block;}
+  .main-panel{background:var(--white);border-radius:18px;padding:40px;border:1px solid rgba(0,48,143,0.08);}
+  .main-panel h2{font-size:1.5rem;margin-bottom:6px;}
+  .lesson-tag{font-size:0.78rem;font-weight:700;color:var(--orange-text);text-transform:uppercase;letter-spacing:0.04em;margin-bottom:8px;display:block;}
 
-  .lesson-text{margin-top:24px;}
-  .lesson-text p{color:var(--ink);font-size:1.02rem;margin-bottom:18px;}
+  .lesson-image{margin:20px 0 28px;border-radius:14px;overflow:hidden;border:1px solid var(--navy-soft);}
+  .lesson-image img{width:100%;display:block;}
+  .lesson-image-empty{
+    background:linear-gradient(135deg, var(--navy), var(--navy-deep));border-radius:14px;
+    padding:40px;margin:20px 0 28px;color:#fff;text-align:center;
+  }
+  .lesson-image-empty .emoji{font-size:2.2rem;margin-bottom:8px;}
 
-  .takeaways{background:var(--navy-soft);border-radius:12px;padding:24px 26px;margin:28px 0;}
+  .lesson-text p{color:var(--ink);font-size:0.98rem;margin-bottom:16px;}
+  .takeaways{background:var(--navy-soft);border-radius:12px;padding:22px 24px;margin:26px 0;}
   .takeaways h4{font-size:0.85rem;text-transform:uppercase;letter-spacing:0.04em;color:var(--navy);margin-bottom:12px;}
   .takeaways ul{padding-left:20px;}
-  .takeaways li{font-size:0.93rem;margin-bottom:9px;color:var(--ink);}
+  .takeaways li{font-size:0.92rem;margin-bottom:8px;color:var(--ink);}
 
-  .disclaimer{font-size:0.8rem;color:var(--ink-soft);background:#FDF3E4;border:1px solid #F3D9A8;border-radius:10px;padding:14px 18px;margin:22px 0;}
+  .disclaimer{font-size:0.78rem;color:var(--ink-soft);background:#FDF3E4;border:1px solid #F3D9A8;border-radius:10px;padding:12px 16px;margin:20px 0;}
 
-  .quiz{border-top:1px solid var(--navy-soft);padding-top:28px;margin-top:32px;}
-  .quiz h4{font-size:0.85rem;text-transform:uppercase;letter-spacing:0.04em;color:var(--ink-soft);margin-bottom:18px;}
-  .q-block{margin-bottom:24px;}
-  .q-text{font-weight:700;font-size:0.95rem;margin-bottom:10px;color:var(--navy-deep);}
+  .quiz{border-top:1px solid var(--navy-soft);padding-top:26px;margin-top:30px;}
+  .quiz h4{font-size:0.85rem;text-transform:uppercase;letter-spacing:0.04em;color:var(--ink-soft);margin-bottom:16px;}
+  .q-block{margin-bottom:22px;}
+  .q-text{font-weight:700;font-size:0.94rem;margin-bottom:10px;color:var(--navy-deep);}
   .q-opt{
-    display:block;border:1.5px solid var(--navy-soft);border-radius:9px;padding:11px 14px;margin-bottom:8px;
-    font-size:0.89rem;cursor:pointer;transition:border-color .15s;
+    display:block;border:1.5px solid var(--navy-soft);border-radius:9px;padding:10px 14px;margin-bottom:8px;
+    font-size:0.88rem;cursor:pointer;transition:border-color .15s;
   }
   .q-opt:hover{border-color:var(--navy);}
   .q-opt input{margin-right:10px;}
@@ -109,6 +114,7 @@
     background:linear-gradient(160deg, #fff, var(--navy-soft)); position:relative;
   }
   .cert-card .logo-img{height:44px;margin:0 auto 20px;display:block;}
+  .cert-card .brand{font-family:'Fraunces',serif;font-weight:700;font-size:1.1rem;color:var(--navy);margin-bottom:26px;}
   .cert-card .h{font-size:0.8rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--ink-soft);margin-bottom:14px;}
   .cert-card .name{font-family:'Fraunces',serif;font-size:2rem;color:var(--navy-deep);margin-bottom:14px;}
   .cert-card .course{font-size:1.05rem;color:var(--ink);margin-bottom:22px;}
@@ -119,15 +125,17 @@
   }
   .cert-footer b{color:var(--navy-deep);}
   .cert-footer .col{flex:1;min-width:180px;}
+  .cert-footer .col.right{text-align:right;}
   #certQR svg{width:64px;height:64px;}
+  @media (max-width:520px){ .cert-footer .col.right{text-align:left;} }
   .cert-name-input{margin:0 auto 20px;display:block;max-width:320px;width:100%;padding:12px 16px;border-radius:9px;border:1.5px solid var(--navy-soft);font-size:0.95rem;text-align:center;font-family:'Inter',sans-serif;}
 
   @media print{
-    header, .sidebar, .quiz, .lesson-text, .takeaways, .disclaimer, .cert-actions,
+    header, .sidebar, .quiz, .lesson-image, .lesson-image-empty, .lesson-text, .takeaways, .disclaimer, .cert-actions,
     .cert-wrap > .lesson-tag, .cert-wrap > h2, .cert-wrap > p, .cert-name-input{display:none !important;}
     body{background:#fff;}
     .layout{display:block;padding:0;}
-    .main-panel{border:none;padding:0;box-shadow:none;max-width:none;}
+    .main-panel{border:none;padding:0;box-shadow:none;}
     .cert-card{margin:0 auto;box-shadow:none;}
   }
 </style>
@@ -175,540 +183,424 @@
 
   var MODULES = [
   {
-    "title": "Repenser le surpoids au-delà de la volonté",
-    "sub": "Cadrage scientifique",
+    "title": "Bienvenue dans le module Recettes",
+    "sub": "Introduction",
+    "img": null,
     "content": [
-      "Le discours dominant sur le surpoids repose sur une équation morale déguisée en équation physiologique : manger moins et bouger plus suffirait, et l'échec relèverait d'un manque de discipline. Cette lecture ignore que le poids corporel est régulé par un système neuroendocrinien complexe — impliquant l'hypothalamus, une dizaine d'hormones et des boucles de rétroaction — qui agit largement hors du contrôle conscient.",
-      "Ce système a été façonné par la sélection naturelle pour défendre le corps contre la perte de poids, pas contre la prise de poids : dans un environnement d'abondance alimentaire chronique, disponible depuis quelques décennies seulement, ces mécanismes de défense se retournent contre l'individu. Le surpoids d'aujourd'hui n'est pas une anomalie de la biologie, c'est une biologie ancienne confrontée à un environnement radicalement nouveau.",
-      "Cette formation aborde le surpoids comme la résultante de plusieurs systèmes en interaction — métabolique, hormonal, neurologique, environnemental — plutôt que comme un simple déficit de volonté. Comprendre ces mécanismes ne dédouane pas de l'action, mais permet d'agir sur les bons leviers, avec des attentes réalistes."
+      "Ce module complète votre formation « Santé métabolique & régime cétogène — le protocole AfroKeto™ ». Vous y avez appris les bases scientifiques de la cétose ; ici, vous passez à la pratique, assiette après assiette.",
+      "Les leçons qui suivent vous donnent des recettes originales — petits-déjeuners, plats principaux, collations, dessert, boisson et sauces — pensées pour des ingrédients que vous trouvez facilement au Bénin : wagashi, gboma, kilishi, arachide, coco, avocat.",
+      "Chaque recette respecte le Code Alimentaire Gevlon et s'inscrit dans les objectifs du protocole NAPSO™ : nourrir sans priver, avec des repas qui tiennent au corps et à l'emploi du temps."
     ],
     "takeaways": [
-      "Le poids corporel est régulé par un système neuroendocrinien, pas uniquement par la volonté consciente.",
-      "Ce système a été sélectionné pour défendre contre la perte de poids, pas contre la prise de poids.",
-      "L'environnement alimentaire moderne est nouveau à l'échelle de l'évolution humaine ; la biologie ne l'est pas."
+      "Ce module est un complément pratique à la formation AfroKeto™.",
+      "11 recettes locales réparties en petit-déjeuner, plats, collations, dessert et boisson.",
+      "Chaque recette respecte le Code Alimentaire Gevlon."
     ],
     "quiz": [
       {
-        "q": "Le système de régulation du poids a été façonné par l'évolution pour :",
+        "q": "Ce module de recettes complète quelle formation ?",
         "options": [
-          "Défendre contre la prise de poids",
-          "Défendre contre la perte de poids",
-          "Ignorer l'apport alimentaire",
-          "Aucune des deux"
+          "No-Diabète",
+          "Santé métabolique & régime cétogène — AfroKeto™",
+          "Fit@Domicile",
+          "Aucune"
         ],
         "correct": 1
       },
       {
-        "q": "Selon cette leçon, le surpoids relève principalement de :",
+        "q": "Les recettes de ce module utilisent principalement :",
         "options": [
-          "Un simple manque de volonté",
-          "L'interaction de systèmes métaboliques, hormonaux et environnementaux",
-          "Une maladie rare",
-          "Un choix conscient uniquement"
+          "Des produits importés",
+          "Des ingrédients locaux et accessibles",
+          "Uniquement des compléments",
+          "Des plats surgelés"
         ],
         "correct": 1
       }
     ]
   },
   {
-    "title": "Le bilan énergétique, plus complexe qu'il n'y paraît",
-    "sub": "Dépense énergétique réelle",
+    "title": "Les bases de la cuisine cétogène locale",
+    "sub": "Rappel du Code Alimentaire",
+    "img": null,
     "content": [
-      "L'affirmation « une calorie est une calorie » est thermodynamiquement vraie mais physiologiquement incomplète, car la dépense énergétique totale n'est pas fixe : elle se compose du métabolisme de base (environ 60-70% de la dépense, l'énergie utilisée au repos par les organes), de l'effet thermique des aliments (5-10%, l'énergie dépensée pour digérer), de la thermogenèse d'activité non liée à l'exercice ou NEAT (variable, parfois 15-30%), et de l'exercice volontaire (souvent la plus petite part chez la majorité des gens).",
-      "Le corps ajuste ces composantes en fonction de l'apport énergétique : lors d'une restriction calorique prolongée, le métabolisme de base peut baisser au-delà de ce que prédit la seule perte de masse maigre — un phénomène documenté sous le nom d'adaptation métabolique ou thermogenèse adaptative. Le NEAT, en particulier, chute souvent de façon inconsciente pendant un régime : la personne bouge moins sans s'en rendre compte, ce qui réduit la dépense sans qu'elle en ait conscience.",
-      "Cela ne signifie pas que l'apport calorique n'a pas d'importance — il en a — mais que le corps n'est pas un système passif face à un déficit imposé. Il réagit activement pour préserver son énergie, ce qui explique pourquoi la perte de poids ralentit typiquement après les premières semaines d'un régime, même sans écart alimentaire."
+      "Le régime cétogène repose sur un principe simple : réduire fortement les glucides pour que le corps utilise les graisses comme carburant, plutôt que le sucre. En pratique, cela veut dire composer chaque repas autour de protéines, de bonnes graisses et de légumes peu sucrés.",
+      "Le Code Alimentaire Gevlon classe les aliments courants en trois listes : verte (à privilégier — gboma, wagashi, poisson, œufs, avocat, huile de coco), orange (avec modération — igname en petite quantité, fruits peu sucrés) et rouge (à éviter — riz blanc, sucre, pain blanc).",
+      "Toutes les recettes de ce module puisent volontairement dans la liste verte, avec quelques touches de liste orange en toute petite quantité quand c'est nécessaire pour le goût."
     ],
     "takeaways": [
-      "La dépense énergétique totale se compose de 4 éléments, dont le métabolisme de base est le plus important.",
-      "Le NEAT (mouvement non volontaire) chute souvent inconsciemment pendant un régime.",
-      "Le corps s'adapte activement à la restriction calorique, ce qui ralentit la perte de poids avec le temps."
+      "Le cétogène réduit fortement les glucides au profit des bonnes graisses et protéines.",
+      "La liste verte du Code Alimentaire est la base de toutes les recettes de ce module.",
+      "La liste rouge (riz blanc, sucre, pain blanc) est à éviter."
     ],
     "quiz": [
       {
-        "q": "Quelle est la composante la plus importante de la dépense énergétique totale ?",
+        "q": "Sur quoi repose principalement le régime cétogène ?",
         "options": [
-          "L'exercice volontaire",
-          "Le métabolisme de base",
-          "L'effet thermique des aliments",
-          "Le NEAT"
+          "Beaucoup de riz et féculents",
+          "Protéines, bonnes graisses, légumes peu sucrés",
+          "Uniquement des fruits",
+          "Des boissons sucrées"
         ],
         "correct": 1
       },
       {
-        "q": "Que se passe-t-il souvent avec le NEAT pendant un régime restrictif ?",
+        "q": "Quels aliments appartiennent à la liste verte du Code Alimentaire ?",
         "options": [
-          "Il augmente fortement",
-          "Il reste parfaitement stable",
-          "Il diminue inconsciemment",
-          "Il n'existe pas chez l'humain"
-        ],
-        "correct": 2
-      }
-    ]
-  },
-  {
-    "title": "Insuline et résistance à l'insuline",
-    "sub": "Approfondissement",
-    "content": [
-      "L'insuline ne se contente pas de faire entrer le glucose dans les cellules : elle inhibe aussi la lipolyse (la libération des graisses stockées) et favorise la lipogenèse (leur stockage). Un taux d'insuline chroniquement élevé maintient donc le tissu adipeux dans un état de stockage prolongé, rendant l'accès aux réserves de graisse plus difficile, indépendamment de l'apport calorique total.",
-      "La résistance à l'insuline s'installe progressivement dans le muscle, le foie et le tissu adipeux, souvent des années avant qu'une glycémie anormale ne soit détectée en analyse. Un des mécanismes centraux est l'accumulation de lipides intramyocellulaires et intrahépatiques, qui interfère directement avec la signalisation de l'insuline au niveau cellulaire — ce n'est donc pas uniquement une question de sucre consommé, mais aussi de graisse mal stockée dans des tissus qui ne sont pas faits pour ça.",
-      "Cette résistance crée un cercle qui s'auto-entretient : plus les cellules répondent mal à l'insuline, plus le pancréas en sécrète pour compenser (hyperinsulinémie compensatoire), ce qui aggrave encore l'inhibition de la lipolyse. Casser ce cercle demande généralement une réduction significative et soutenue des glucides raffinés, pas simplement une réduction calorique globale."
-    ],
-    "takeaways": [
-      "L'insuline élevée inhibe activement le déstockage des graisses, pas seulement le stockage du sucre.",
-      "La résistance à l'insuline s'installe des années avant une glycémie anormale détectable.",
-      "L'accumulation de graisse dans le muscle et le foie perturbe directement la signalisation de l'insuline."
-    ],
-    "quiz": [
-      {
-        "q": "Un taux d'insuline chroniquement élevé a pour effet de :",
-        "options": [
-          "Faciliter le déstockage des graisses",
-          "Inhiber le déstockage des graisses (lipolyse)",
-          "N'avoir aucun effet sur les graisses",
-          "Réduire l'appétit"
-        ],
-        "correct": 1
-      },
-      {
-        "q": "L'accumulation de graisse dans le foie et le muscle contribue à :",
-        "options": [
-          "Améliorer la sensibilité à l'insuline",
-          "Perturber directement la signalisation de l'insuline",
-          "N'a aucun lien avec l'insuline",
-          "Réduire l'inflammation"
+          "Riz blanc et sucre",
+          "Gboma, wagashi, poisson, avocat",
+          "Pain blanc",
+          "Boissons sucrées"
         ],
         "correct": 1
       }
     ]
   },
   {
-    "title": "La leptine et sa résistance",
-    "sub": "L'hormone de satiété méconnue",
+    "title": "Constituer son garde-manger AfroKeto™",
+    "sub": "S'organiser",
+    "img": null,
     "content": [
-      "La leptine est sécrétée par le tissu adipeux, proportionnellement à sa masse : plus il y a de graisse stockée, plus la leptine circulante est élevée. Elle signale normalement à l'hypothalamus que les réserves énergétiques sont suffisantes, ce qui devrait réduire la faim et augmenter la dépense énergétique. Logiquement, une personne en surpoids devrait donc avoir moins faim — ce n'est pourtant pas ce qu'on observe.",
-      "Chez de nombreuses personnes en surpoids, le taux de leptine est élevé mais son signal n'est plus correctement perçu par l'hypothalamus : c'est la résistance à la leptine, un mécanisme parallèle à la résistance à l'insuline, impliquant une inflammation locale de l'hypothalamus et une altération du transport de la leptine à travers la barrière hémato-encéphalique. Le cerveau interprète alors, à tort, un manque d'énergie disponible — malgré des réserves abondantes — et déclenche les réponses adaptées à la famine : faim accrue, dépense énergétique réduite.",
-      "Ce mécanisme explique en partie pourquoi le simple fait d'avoir plus de graisse corporelle ne suffit pas à réduire naturellement l'appétit, et pourquoi la perte de poids initiale peut s'accompagner d'une faim paradoxalement plus intense : la baisse de la masse grasse fait chuter la leptine circulante, et le cerveau — déjà mal réceptif à ce signal — perçoit cette baisse comme un signal de famine encore plus fort."
+      "Avoir les bons ingrédients à disposition fait la différence entre « je craque » et « je me prépare quelque chose de bon en 10 minutes ».",
+      "Base à toujours avoir : huile de coco et d'arachide, œufs, wagashi, kilishi, poisson, gboma et légumes-feuilles, arachide crue, graines de courge, noix de coco râpée, gingembre, ail, citronnelle, piment et citron.",
+      "Achetez le poisson et les légumes-feuilles en petites quantités fréquentes plutôt qu'en gros stock — ils se conservent mieux frais et gardent toute leur valeur nutritive."
     ],
     "takeaways": [
-      "La leptine signale au cerveau que les réserves énergétiques sont suffisantes, réduisant normalement la faim.",
-      "La résistance à la leptine fait que le cerveau ignore ce signal malgré des réserves abondantes.",
-      "La perte de poids fait chuter la leptine, ce qui peut intensifier la faim pendant un régime."
+      "Un garde-manger bien pensé évite les écarts de dernière minute.",
+      "Privilégiez les achats fréquents en petites quantités pour le frais.",
+      "Les aromates (gingembre, ail, citronnelle, piment) sont indispensables pour le goût."
     ],
     "quiz": [
       {
-        "q": "La leptine est sécrétée principalement par :",
+        "q": "Pourquoi acheter poisson et légumes-feuilles en petites quantités fréquentes ?",
         "options": [
-          "Le pancréas",
-          "Le tissu adipeux",
-          "Le foie",
-          "L'estomac"
-        ],
-        "correct": 1
-      },
-      {
-        "q": "En cas de résistance à la leptine, le cerveau :",
-        "options": [
-          "Perçoit correctement le signal de satiété",
-          "Ne perçoit plus correctement le signal malgré des réserves suffisantes",
-          "Reçoit trop peu de leptine",
-          "N'est pas concerné par la leptine"
+          "C'est moins cher",
+          "Ils se conservent mieux frais et gardent leur valeur nutritive",
+          "Ce n'est pas nécessaire",
+          "Pour faire des réserves"
         ],
         "correct": 1
       }
     ]
   },
   {
-    "title": "La ghréline et le signal de faim",
-    "sub": "Régulation à court terme",
+    "title": "Omelette wagashi et légumes verts",
+    "sub": "Petit-déjeuner",
+    "img": "01-omelette-wagashi.png",
     "content": [
-      "Contrairement à la leptine qui régule les réserves à long terme, la ghréline est une hormone sécrétée principalement par l'estomac, dont le taux augmente avant les repas et chute après avoir mangé : c'est le principal signal de faim à court terme, souvent qualifiée d'« hormone de la faim ».",
-      "Un point rarement expliqué : les niveaux de ghréline s'ajustent aux horaires de repas habituels. Une personne qui mange systématiquement à des heures fixes voit sa ghréline augmenter en anticipation, avant même que les réserves énergétiques ne soient réellement basses — la faim est alors en partie apprise et conditionnée, pas uniquement une nécessité physiologique immédiate.",
-      "La restriction calorique prolongée augmente durablement le taux de ghréline de base, un effet qui persiste plusieurs mois après une perte de poids selon les données de suivi à long terme — ce qui contribue directement à la difficulté de maintenir une perte de poids dans le temps, indépendamment de toute question de volonté."
+      "Un petit-déjeuner riche en protéines et en bonnes graisses, prêt en 15 minutes, qui cale jusqu'au déjeuner sans pic de glycémie.",
+      "Ingrédients (2 portions) : 4 œufs · 100 g de wagashi en dés · 1 poignée de gboma ou épinard local ciselé · ½ oignon émincé · 1 c. à soupe d'huile de coco · sel, poivre, piment au goût.",
+      "Préparation : battez les œufs avec sel et poivre. Faites chauffer l'huile de coco, faites revenir l'oignon 2 min puis le gboma jusqu'à ce qu'il tombe. Ajoutez le wagashi, laissez dorer 2 min. Versez les œufs battus, laissez prendre à feu doux 3-4 min. Repliez en deux et servez."
     ],
     "takeaways": [
-      "La ghréline régule la faim à court terme et augmente avant les repas habituels.",
-      "La faim est en partie conditionnée par les horaires de repas réguliers, pas uniquement physiologique.",
-      "Un régime restrictif élève durablement la ghréline de base, bien après la perte de poids."
+      "Le wagashi remplace très bien le fromage dans les recettes salées.",
+      "Cette omelette se prépare en 15 minutes avec 6 ingrédients."
     ],
     "quiz": [
       {
-        "q": "La ghréline est principalement sécrétée par :",
+        "q": "Dans cette recette, le wagashi remplace :",
         "options": [
-          "Le tissu adipeux",
-          "L'estomac",
-          "Le pancréas",
-          "Le foie"
+          "La viande",
+          "Le fromage",
+          "Le riz",
+          "L'huile"
         ],
         "correct": 1
       },
       {
-        "q": "Après un régime restrictif, le taux de ghréline de base :",
+        "q": "Combien de temps faut-il pour préparer cette omelette ?",
         "options": [
-          "Redevient immédiatement normal",
-          "Reste durablement élevé, parfois pendant des mois",
-          "Disparaît complètement",
-          "N'est jamais affecté"
+          "5 minutes",
+          "15 minutes",
+          "1 heure",
+          "45 minutes"
         ],
         "correct": 1
       }
     ]
   },
   {
-    "title": "Cortisol, stress chronique et graisse viscérale",
-    "sub": "L'axe du stress",
+    "title": "Bouillie de graines de courge",
+    "sub": "Petit-déjeuner",
+    "img": "02-bouillie-courge.png",
     "content": [
-      "Le cortisol est sécrété par les glandes surrénales en réponse au stress, via l'axe hypothalamo-hypophyso-surrénalien. Ponctuellement, il mobilise l'énergie disponible (glucose, acides gras) pour répondre à une menace immédiate — un mécanisme utile et sans conséquence sur le poids à court terme.",
-      "Le problème survient avec le stress chronique, caractéristique des modes de vie modernes (charge mentale, précarité, surcharge de travail, manque de sommeil) : un cortisol élevé de façon soutenue favorise le stockage préférentiel de graisse au niveau viscéral — autour des organes abdominaux — plutôt qu'en sous-cutané. Le tissu adipeux viscéral possède une densité plus élevée de récepteurs aux glucocorticoïdes que le tissu sous-cutané, ce qui explique cette localisation préférentielle.",
-      "Le cortisol chronique interagit aussi avec l'insuline et la leptine : il favorise la résistance à l'insuline dans le muscle, et perturbe la signalisation de la leptine au niveau central. Le stress chronique n'est donc pas un facteur périphérique dans la prise de poids — il agit directement sur les mêmes voies hormonales que l'alimentation, ce qui explique pourquoi deux personnes avec une alimentation identique peuvent avoir des trajectoires de poids très différentes selon leur niveau de stress chronique."
+      "Une alternative chaude et réconfortante à la bouillie de céréales classique, sans le pic de sucre.",
+      "Ingrédients (2 portions) : 150 g de graines de courge moulues · 300 ml de lait de coco · 200 ml d'eau · 1 pincée de cannelle · 1 pincée de sel.",
+      "Préparation : mélangez les graines moulues avec l'eau à froid dans une casserole. Faites chauffer à feu doux en remuant constamment. Ajoutez le lait de coco petit à petit. Laissez épaissir 5-6 min. Ajoutez cannelle et sel, servez chaud."
     ],
     "takeaways": [
-      "Le cortisol chronique favorise spécifiquement le stockage de graisse viscérale (abdominale).",
-      "Le tissu adipeux viscéral a plus de récepteurs au cortisol que le tissu sous-cutané.",
-      "Le stress chronique aggrave directement la résistance à l'insuline et la résistance à la leptine."
+      "Cette bouillie remplace les céréales sucrées du matin sans pic de glycémie.",
+      "Faire griller les graines avant de les moudre développe un goût de noisette."
     ],
     "quiz": [
       {
-        "q": "Un cortisol chroniquement élevé favorise le stockage de graisse principalement :",
+        "q": "Que remplace cette bouillie de graines de courge ?",
         "options": [
-          "Au niveau viscéral (abdominal)",
-          "Uniquement au niveau des cuisses",
-          "Il n'a aucun effet sur la localisation",
-          "Sur tout le corps de façon égale"
-        ],
-        "correct": 0
-      },
-      {
-        "q": "Le stress chronique interagit avec :",
-        "options": [
-          "Uniquement l'appétit",
-          "L'insuline et la leptine également",
-          "Aucune autre hormone",
-          "Uniquement le sommeil"
+          "Le café",
+          "La bouillie de céréales sucrées classique",
+          "Le pain",
+          "Rien de particulier"
         ],
         "correct": 1
       }
     ]
   },
   {
-    "title": "Le sommeil, facteur métabolique majeur",
-    "sub": "L'angle mort des programmes minceur",
+    "title": "Poulet braisé, sauce arachide allégée",
+    "sub": "Plat principal",
+    "img": "03-poulet-arachide.png",
     "content": [
-      "Un sommeil insuffisant ou de mauvaise qualité modifie directement les hormones de la faim : une seule nuit de sommeil restreint suffit à augmenter la ghréline et à diminuer la leptine circulante, un déséquilibre qui se traduit par une augmentation mesurable de l'appétit, en particulier pour les aliments denses en calories et en glucides simples.",
-      "Le manque de sommeil réduit aussi la sensibilité à l'insuline de façon significative — des études de restriction de sommeil contrôlée montrent une dégradation de la tolérance au glucose comparable à un état prédiabétique après seulement quelques nuits écourtées. Ce n'est pas un effet secondaire mineur : c'est un des leviers métaboliques les plus rapides à se dérégler.",
-      "Le sommeil affecte également les prises de décision liées à l'alimentation via le cortex préfrontal, dont l'activité de régulation est réduite par la privation de sommeil, tandis que les zones cérébrales liées à la récompense deviennent plus réactives aux stimuli alimentaires. Un programme de perte de poids qui ignore le sommeil travaille donc contre plusieurs mécanismes hormonaux et neurologiques simultanément."
+      "La sauce arachide dans une version qui garde tout son goût, avec beaucoup moins de glucides que la version traditionnelle sucrée.",
+      "Ingrédients (4 portions) : 800 g de poulet · 150 g de pâte d'arachide pure non sucrée · 2 tomates mixées · 1 oignon émincé · ail et gingembre râpés · 400 ml de bouillon · 2 c. à soupe d'huile d'arachide · piment, sel.",
+      "Préparation : faites dorer le poulet, réservez. Faites revenir oignon, ail, gingembre. Ajoutez la tomate, laissez réduire 5 min. Délayez la pâte d'arachide avec du bouillon chaud, versez dans la marmite avec le reste du bouillon et le poulet. Laissez mijoter 25-30 min à feu doux."
     ],
     "takeaways": [
-      "Une seule nuit de sommeil insuffisant modifie mesurablement la ghréline et la leptine.",
-      "La privation de sommeil dégrade la tolérance au glucose en quelques jours seulement.",
-      "Le manque de sommeil augmente la réactivité cérébrale aux aliments récompensants."
+      "Vérifiez que votre pâte d'arachide est 100% pure, sans sucre ajouté.",
+      "Ce plat se prépare en 40 minutes pour 4 personnes."
     ],
     "quiz": [
       {
-        "q": "Après une nuit de sommeil restreint, les hormones de la faim :",
+        "q": "Quel point de vigilance faut-il avoir avec la pâte d'arachide ?",
         "options": [
-          "Ne changent pas",
-          "Ghréline augmente, leptine diminue",
-          "Ghréline diminue, leptine augmente",
-          "Disparaissent temporairement"
-        ],
-        "correct": 1
-      },
-      {
-        "q": "La privation de sommeil affecte la tolérance au glucose :",
-        "options": [
-          "Pas du tout",
-          "Seulement après plusieurs années",
-          "De façon mesurable en quelques jours",
-          "Uniquement chez les enfants"
-        ],
-        "correct": 2
-      }
-    ]
-  },
-  {
-    "title": "Microbiote intestinal et poids corporel",
-    "sub": "L'écosystème invisible",
-    "content": [
-      "Le microbiote intestinal — l'ensemble des bactéries qui peuplent le tube digestif — participe à l'extraction d'énergie à partir des aliments non digérés par l'organisme, notamment les fibres, qu'il fermente en acides gras à chaîne courte. La composition de ce microbiote varie fortement selon l'alimentation et influence l'efficacité avec laquelle un individu extrait de l'énergie de sa nourriture.",
-      "Des travaux comparant des microbiotes de personnes minces et de personnes en surpoids montrent des différences de composition, notamment dans le ratio entre certains grands groupes bactériens (Firmicutes/Bacteroidetes), bien que la relation de cause à effet reste débattue et probablement bidirectionnelle : le poids influence le microbiote autant que l'inverse.",
-      "Un microbiote perturbé (dysbiose), souvent lié à une alimentation pauvre en fibres et riche en aliments ultra-transformés, est associé à une perméabilité intestinale accrue, laissant passer des fragments bactériens (lipopolysaccharides) dans la circulation sanguine. Ce phénomène déclenche une inflammation systémique de bas grade, elle-même impliquée dans l'aggravation de la résistance à l'insuline — reliant directement la santé intestinale aux mécanismes vus dans les leçons précédentes."
-    ],
-    "takeaways": [
-      "Le microbiote intestinal influence l'extraction d'énergie à partir des aliments, notamment via les fibres.",
-      "Une alimentation pauvre en fibres favorise une dysbiose (déséquilibre du microbiote).",
-      "La dysbiose peut déclencher une inflammation de bas grade qui aggrave la résistance à l'insuline."
-    ],
-    "quiz": [
-      {
-        "q": "Le microbiote intestinal transforme les fibres non digérées en :",
-        "options": [
-          "Glucose pur",
-          "Acides gras à chaîne courte",
-          "Protéines",
-          "Vitamines uniquement"
-        ],
-        "correct": 1
-      },
-      {
-        "q": "Une dysbiose intestinale est associée à :",
-        "options": [
-          "Une meilleure sensibilité à l'insuline",
-          "Une inflammation systémique de bas grade",
-          "Aucun effet métabolique",
-          "Une réduction de l'appétit"
-        ],
-        "correct": 1
-      }
-    ]
-  },
-  {
-    "title": "L'environnement alimentaire moderne",
-    "sub": "Pourquoi manger est devenu plus difficile",
-    "content": [
-      "Les aliments ultra-transformés sont conçus, par optimisation industrielle répétée, pour maximiser la palatabilité — combinaisons précises de sucre, gras et sel qui dépassent ce qu'on trouve dans la nature et qui stimulent fortement les circuits de récompense cérébraux, au-delà du seuil de satiété naturel.",
-      "Leur texture (souvent molle, à mastication rapide) et leur densité calorique élevée favorisent une consommation rapide, laissant moins de temps aux signaux de satiété gastrique et hormonale (notamment le peptide YY et la cholécystokinine) pour s'installer avant que l'apport calorique ne soit déjà excessif — un repas d'aliments ultra-transformés peut apporter le double de calories qu'un repas d'aliments bruts consommé pendant la même durée et jusqu'à satiété perçue équivalente.",
-      "Cette réalité n'est pas une question de morale individuelle : c'est un environnement optimisé, à l'échelle industrielle, pour contourner les mécanismes naturels de régulation de l'appétit. En comprendre les mécanismes permet d'agir de façon ciblée — privilégier les aliments bruts à mastication lente et à densité calorique modérée — plutôt que de compter uniquement sur la résistance à la tentation face à un système conçu pour la dépasser."
-    ],
-    "takeaways": [
-      "Les aliments ultra-transformés sont optimisés industriellement pour maximiser la palatabilité au-delà des seuils naturels.",
-      "Leur texture et densité calorique retardent l'apparition des signaux de satiété.",
-      "Le problème est structurel et industriel, pas uniquement une question de volonté individuelle."
-    ],
-    "quiz": [
-      {
-        "q": "Les aliments ultra-transformés sont optimisés pour :",
-        "options": [
-          "Rassasier le plus vite possible",
-          "Maximiser la palatabilité au-delà des seuils naturels",
-          "Réduire la densité calorique",
-          "Ralentir la mastication"
-        ],
-        "correct": 1
-      },
-      {
-        "q": "La consommation rapide d'aliments ultra-transformés a pour effet de :",
-        "options": [
-          "Améliorer les signaux de satiété",
-          "Retarder l'apparition des signaux de satiété par rapport à l'apport calorique",
-          "N'a aucun effet particulier",
-          "Réduire l'appétit à long terme"
-        ],
-        "correct": 1
-      }
-    ]
-  },
-  {
-    "title": "Sédentarité structurelle et NEAT",
-    "sub": "La dépense énergétique invisible disparue",
-    "content": [
-      "Le NEAT (Non-Exercise Activity Thermogenesis) désigne l'énergie dépensée par tous les mouvements du quotidien qui ne sont pas de l'exercice volontaire : se tenir debout, marcher pour se déplacer, porter des charges, les petits gestes répétés au travail ou à la maison. Chez certaines personnes très actives dans leur quotidien, le NEAT peut représenter plusieurs centaines de calories par jour de différence par rapport à une personne sédentaire, sans qu'aucune des deux ne fasse d'exercice structuré.",
-      "L'urbanisation, la mécanisation des tâches domestiques et professionnelles, et les transports motorisés ont réduit le NEAT moyen de façon structurelle sur plusieurs décennies — indépendamment de toute pratique sportive volontaire. Une personne peut aller à la salle de sport quotidiennement et rester globalement moins active sur l'ensemble de sa journée qu'une personne qui, un siècle plus tôt, effectuait simplement les tâches ordinaires de sa vie sans faire « de sport » au sens moderne.",
-      "Ce constat déplace le levier d'action : l'exercice structuré reste utile pour la santé cardiovasculaire et musculaire, mais il ne compense pas nécessairement une chute du NEAT quotidien. Réintégrer du mouvement dans les interstices de la journée — la marche, la station debout, les tâches manuelles — a un impact cumulé souvent sous-estimé par rapport à une séance de sport isolée."
-    ],
-    "takeaways": [
-      "Le NEAT (mouvement non-sportif du quotidien) peut représenter plusieurs centaines de calories de différence par jour.",
-      "L'urbanisation et la mécanisation ont réduit le NEAT structurellement, indépendamment du sport volontaire.",
-      "Le mouvement réparti sur la journée a un impact cumulé souvent supérieur à une séance de sport isolée."
-    ],
-    "quiz": [
-      {
-        "q": "Le NEAT désigne :",
-        "options": [
-          "L'exercice sportif structuré",
-          "L'énergie dépensée par les mouvements du quotidien hors exercice volontaire",
-          "Le métabolisme de base uniquement",
-          "La digestion des aliments"
-        ],
-        "correct": 1
-      },
-      {
-        "q": "Qu'est-ce qui a réduit le NEAT moyen sur plusieurs décennies ?",
-        "options": [
-          "La pratique du sport",
-          "L'urbanisation et la mécanisation des tâches",
-          "L'alimentation uniquement",
-          "Le sommeil"
-        ],
-        "correct": 1
-      }
-    ]
-  },
-  {
-    "title": "Le tissu adipeux, organe endocrinien",
-    "sub": "Bien plus qu'un simple stockage",
-    "content": [
-      "Le tissu adipeux n'est pas un simple réservoir passif de graisse : c'est un organe endocrinien actif, qui sécrète plus d'une centaine de substances appelées adipokines — dont la leptine déjà vue, mais aussi l'adiponectine, des cytokines inflammatoires (TNF-alpha, interleukine-6) et d'autres médiateurs qui influencent l'ensemble du métabolisme.",
-      "Lorsque le tissu adipeux, en particulier viscéral, s'étend au-delà de sa capacité d'expansion saine, les adipocytes (cellules graisseuses) deviennent hypertrophiés et hypoxiques (mal oxygénés), ce qui déclenche le recrutement de cellules immunitaires (macrophages) directement dans le tissu adipeux. Ces macrophages sécrètent des cytokines pro-inflammatoires qui contribuent à l'état d'inflammation chronique de bas grade caractéristique du surpoids avancé.",
-      "Cette inflammation n'est pas anecdotique : elle interfère directement avec la signalisation de l'insuline dans les tissus périphériques, aggravant la résistance à l'insuline vue en leçon 3, dans une boucle qui s'auto-entretient. C'est aussi pourquoi le surpoids est associé à un risque accru de multiples pathologies chroniques au-delà du diabète — l'inflammation de bas grade touche l'ensemble de l'organisme, pas seulement le métabolisme du glucose."
-    ],
-    "takeaways": [
-      "Le tissu adipeux sécrète plus de 100 substances actives (adipokines), ce n'est pas un stockage passif.",
-      "Un tissu adipeux en expansion excessive devient inflammatoire, avec recrutement de cellules immunitaires.",
-      "Cette inflammation de bas grade aggrave directement la résistance à l'insuline et touche tout l'organisme."
-    ],
-    "quiz": [
-      {
-        "q": "Le tissu adipeux est aujourd'hui considéré scientifiquement comme :",
-        "options": [
-          "Un simple stockage passif de graisse",
-          "Un organe endocrinien actif",
-          "Un tissu inerte",
-          "Un muscle spécialisé"
-        ],
-        "correct": 1
-      },
-      {
-        "q": "Quand le tissu adipeux s'étend excessivement, il :",
-        "options": [
-          "Devient plus efficace",
-          "Recrute des cellules immunitaires et devient inflammatoire",
-          "N'a aucun changement fonctionnel",
-          "Sécrète moins de substances actives"
-        ],
-        "correct": 1
-      }
-    ]
-  },
-  {
-    "title": "Génétique, épigénétique et prédisposition",
-    "sub": "Ce qui se joue avant même le mode de vie",
-    "content": [
-      "Les études sur les jumeaux montrent une héritabilité du poids corporel estimée généralement entre 40% et 70% selon les cohortes — une part significative, mais qui laisse une marge substantielle à l'environnement et au comportement. Plusieurs dizaines de variants génétiques ont été associés à un risque accru de surpoids, dont le gène FTO, le plus étudié, associé à une régulation modifiée de l'appétit plutôt qu'à un métabolisme de base différent.",
-      "L'épigénétique — les modifications de l'expression des gènes sans changement de la séquence d'ADN elle-même — ajoute une couche supplémentaire : l'environnement pendant la grossesse (nutrition maternelle, prise de poids gestationnelle) peut influencer durablement la régulation métabolique de l'enfant, un phénomène documenté sous le terme de programmation fœtale.",
-      "Cette réalité génétique et épigénétique explique pourquoi deux personnes avec un mode de vie apparemment identique peuvent avoir des trajectoires de poids très différentes — sans que cela signifie que le mode de vie n'a pas d'importance. La prédisposition définit une sensibilité, pas une fatalité : elle module la façon dont le corps répond à l'environnement, mais l'environnement reste un levier d'action réel, y compris pour les personnes génétiquement plus prédisposées."
-    ],
-    "takeaways": [
-      "L'héritabilité du poids corporel est estimée entre 40% et 70% selon les études.",
-      "Le gène FTO influence principalement la régulation de l'appétit, pas le métabolisme de base.",
-      "La prédisposition génétique module la réponse à l'environnement, elle ne détermine pas une fatalité absolue."
-    ],
-    "quiz": [
-      {
-        "q": "L'héritabilité du poids corporel selon les études sur jumeaux se situe environ entre :",
-        "options": [
-          "0% et 10%",
-          "40% et 70%",
-          "95% et 100%",
-          "Elle est nulle"
-        ],
-        "correct": 1
-      },
-      {
-        "q": "Le gène FTO est principalement associé à :",
-        "options": [
-          "Une régulation modifiée de l'appétit",
-          "Un métabolisme de base différent",
-          "Aucun effet connu",
-          "La couleur des yeux"
+          "Elle doit être 100% pure, sans sucre ajouté",
+          "Elle doit être sucrée",
+          "Elle n'a pas d'importance",
+          "Elle doit venir de l'étranger"
         ],
         "correct": 0
       }
     ]
   },
   {
-    "title": "Le point de consigne pondéral (set point)",
-    "sub": "Pourquoi le corps résiste",
+    "title": "Kilishi et légumes sautés au coco",
+    "sub": "Plat principal",
+    "img": "04-kilishi-legumes.png",
     "content": [
-      "La théorie du point de consigne (set point) propose que le corps défend activement un poids ou une masse grasse relativement stable, via les mécanismes hormonaux déjà vus — leptine, ghréline, adaptation du métabolisme de base. Face à une perte de poids, l'ensemble de ces systèmes s'active de façon coordonnée pour freiner la perte et favoriser la reprise, souvent au-delà du poids initial.",
-      "Ce point de consigne n'est pas fixe à vie : il peut être révisé à la hausse, notamment par des périodes prolongées de suralimentation ou de sédentarité qui semblent, avec le temps, être « acceptées » par le système de régulation comme un nouveau point d'équilibre. La révision à la baisse, en revanche, semble plus difficile et plus lente à obtenir, ce qui explique en partie l'asymétrie observée entre la facilité de prendre du poids et la difficulté d'en perdre durablement.",
-      "Une variante plus récente de cette théorie, le « settling point », suggère que ce n'est pas un point fixe activement défendu, mais un équilibre résultant de l'interaction continue entre génétique, environnement et comportement — une nuance importante, car elle implique que des changements d'environnement suffisamment soutenus dans le temps peuvent progressivement déplacer cet équilibre, sans qu'il s'agisse d'une bataille permanente contre un point fixe immuable."
+      "Un plat rapide qui utilise le kilishi comme source de protéines concentrée, avec du croquant et de la fraîcheur.",
+      "Ingrédients (2 portions) : 150 g de kilishi émietté · ¼ de chou vert émincé · 1 poivron en lanières · 1 c. à soupe d'huile de coco · 1 c. à café de gingembre râpé · 1 c. à soupe de jus de citron.",
+      "Préparation : faites chauffer l'huile à feu vif, ajoutez le gingembre 30 sec. Faites sauter chou et poivron 4-5 min. Incorporez le kilishi en fin de cuisson. Arrosez de citron avant de servir."
     ],
     "takeaways": [
-      "Le corps défend activement un poids relativement stable via plusieurs hormones coordonnées.",
-      "Ce point de consigne peut être révisé à la hausse plus facilement qu'à la baisse.",
-      "La théorie du « settling point » suggère un équilibre modifiable par des changements soutenus dans le temps."
+      "Le kilishi étant déjà salé et épicé, goûtez avant d'ajouter du sel.",
+      "Ce plat se prépare en 20 minutes."
     ],
     "quiz": [
       {
-        "q": "Face à une perte de poids, les systèmes hormonaux du corps ont tendance à :",
+        "q": "Pourquoi faut-il goûter avant de saler ce plat ?",
         "options": [
-          "Faciliter la poursuite de la perte",
-          "Freiner la perte et favoriser la reprise de poids",
-          "Rester totalement neutres",
-          "Accélérer le métabolisme durablement"
+          "Le kilishi est déjà salé et épicé",
+          "Il n'y a jamais besoin de sel",
+          "Le chou est salé",
+          "Aucune raison particulière"
         ],
-        "correct": 1
-      },
+        "correct": 0
+      }
+    ]
+  },
+  {
+    "title": "Poisson grillé, sauce gboma",
+    "sub": "Plat principal",
+    "img": "05-poisson-gboma.png",
+    "content": [
+      "Un classique revisité : le poisson grillé accompagné d'une sauce verte onctueuse, riche en fibres et en fer.",
+      "Ingrédients (2 portions) : 2 poissons ou filets · 2 grosses poignées de gboma · 2 c. à soupe d'huile de coco ou d'arachide · 2 gousses d'ail · piment frais · citron, sel.",
+      "Préparation : assaisonnez le poisson (sel, ail, citron), laissez reposer 15 min. Faites griller. Blanchissez le gboma 2 min à l'eau bouillante, égouttez. Mixez avec huile, ail et piment jusqu'à consistance onctueuse. Réchauffez et servez avec le poisson."
+    ],
+    "takeaways": [
+      "La sauce gboma se congèle très bien en petites portions.",
+      "Ce plat riche en fer et en fibres se prépare en 30 minutes."
+    ],
+    "quiz": [
       {
-        "q": "Le \"settling point\" suggère que l'équilibre pondéral est :",
+        "q": "La sauce gboma de cette recette peut être :",
         "options": [
-          "Totalement fixe et immuable",
-          "Modifiable par des changements d'environnement soutenus dans le temps",
-          "Déterminé uniquement à la naissance",
-          "Sans lien avec le comportement"
+          "Congelée en petites portions",
+          "Consommée uniquement le jour même",
+          "Préparée sans légumes",
+          "Faite uniquement avec du riz"
+        ],
+        "correct": 0
+      }
+    ]
+  },
+  {
+    "title": "Salade de wagashi grillé",
+    "sub": "Plat principal",
+    "img": "06-salade-wagashi.png",
+    "content": [
+      "Une salade complète et rassasiante, parfaite pour un déjeuner léger mais nourrissant.",
+      "Ingrédients (2 portions) : 200 g de wagashi en tranches épaisses · 1 concombre en dés · 1 tomate en dés · ½ avocat · 1 c. à soupe d'huile d'olive ou d'arachide · 1 c. à soupe de jus de citron.",
+      "Préparation : faites griller le wagashi à sec 2 min par face. Mélangez concombre, tomate et avocat en dés. Ajoutez le wagashi grillé tiède. Arrosez d'huile et de citron, salez légèrement."
+    ],
+    "takeaways": [
+      "Griller le wagashi change sa texture : croustillant dehors, fondant dedans.",
+      "Cette salade se prépare en 15 minutes."
+    ],
+    "quiz": [
+      {
+        "q": "Que change la cuisson à sec du wagashi ?",
+        "options": [
+          "Rien",
+          "Sa texture — croustillant dehors, fondant dedans",
+          "Sa couleur uniquement",
+          "Son poids"
         ],
         "correct": 1
       }
     ]
   },
   {
-    "title": "Casser les mythes avec la science",
-    "sub": "Démêler le vrai du faux",
+    "title": "Chips de gboma croustillantes",
+    "sub": "Collation",
+    "img": "07-chips-gboma.png",
     "content": [
-      "« Mon métabolisme est lent » : les variations de métabolisme de base entre individus de poids et de composition corporelle similaires sont réelles mais généralement modestes (de l'ordre de quelques centaines de calories au maximum), rarement suffisantes à elles seules pour expliquer un écart de poids important. En revanche, l'adaptation métabolique vue en leçon 2, elle, est bien documentée et significative après un régime restrictif.",
-      "« Les régimes yo-yo cassent le métabolisme de façon permanente » : les données sont plus nuancées — le métabolisme de base tend à se rétablir après la reprise de poids, mais les cycles répétés de restriction semblent favoriser une reprise préférentielle sous forme de graisse plutôt que de masse musculaire, ce qui dégrade progressivement la composition corporelle même à poids stable sur le long terme.",
-      "« Il suffit de manger moins de calories que ce qu'on dépense » : c'est vrai à l'équilibre thermodynamique strict, mais cette phrase ignore tout ce qui a été vu dans ce cours — la dépense n'est pas fixe, la faim n'est pas purement volontaire, et l'environnement alimentaire moderne complique activement l'estimation et le respect de ce déficit. Le principe n'est pas faux ; il est incomplet tel qu'il est généralement présenté."
+      "L'alternative locale et cétogène aux chips industrielles, riche en fibres et en fer.",
+      "Ingrédients (4 portions) : 1 grosse botte de feuilles de gboma lavées et bien séchées · 1 c. à soupe d'huile de coco fondue · une pincée de sel.",
+      "Préparation : préchauffez le four à 150°C. Enduisez légèrement chaque feuille d'huile. Disposez à plat sans les superposer. Faites cuire 10-15 min jusqu'à ce qu'elles soient croustillantes. Salez à la sortie."
     ],
     "takeaways": [
-      "Les écarts de métabolisme de base entre individus similaires sont réels mais généralement modestes.",
-      "Les régimes yo-yo répétés favorisent une reprise de poids sous forme de graisse plutôt que de muscle.",
-      "\"Manger moins que ce qu'on dépense\" est vrai mais incomplet sans tenir compte des mécanismes de régulation."
+      "Les feuilles doivent être parfaitement sèches avant cuisson, sinon elles cuisent à la vapeur.",
+      "Une alternative locale aux chips industrielles, prête en 20 minutes."
     ],
     "quiz": [
       {
-        "q": "Les écarts de métabolisme de base entre individus de poids similaire sont :",
+        "q": "Pourquoi les feuilles de gboma doivent-elles être bien sèches avant cuisson ?",
         "options": [
-          "Toujours énormes et déterminants",
-          "Généralement modestes",
-          "Inexistants",
-          "Impossibles à mesurer"
-        ],
-        "correct": 1
-      },
-      {
-        "q": "Les cycles de régimes yo-yo répétés favorisent :",
-        "options": [
-          "Une reprise de poids sous forme de muscle",
-          "Une reprise de poids sous forme de graisse plutôt que de muscle",
-          "Aucun effet sur la composition corporelle",
-          "Une perte de poids permanente"
+          "Pour qu'elles cuisent plus vite",
+          "Sinon elles cuisent à la vapeur au lieu de croustiller",
+          "Ça n'a pas d'importance",
+          "Pour qu'elles soient plus salées"
         ],
         "correct": 1
       }
     ]
   },
   {
-    "title": "Construire un mode de vie durable",
-    "sub": "Des leviers réalistes, sans dogme",
+    "title": "Boules d'énergie coco-arachide",
+    "sub": "Collation",
+    "img": "08-boules-energie.png",
     "content": [
-      "Ce cours n'a pas cherché à minimiser le rôle de l'alimentation, mais à replacer le surpoids dans sa complexité réelle : bilan énergétique non fixe, hormones de la faim et de la satiété, stress, sommeil, microbiote, environnement alimentaire industriel, génétique et point de consigne pondéral. Aucun levier isolé ne suffit à expliquer, ni à résoudre, la question à lui seul.",
-      "Les leviers les plus soutenus par la recherche sur le maintien à long terme d'une perte de poids incluent : une activité physique régulière (pas nécessairement intense, mais régulière et incluant le renforcement musculaire pour préserver la masse maigre), une attention réelle portée au sommeil, une gestion active du stress chronique, une alimentation basée sur des produits bruts plutôt qu'ultra-transformés, et un suivi de poids régulier qui permet de réagir tôt à une reprise plutôt que de la découvrir tardivement.",
-      "Ce cours n'a volontairement donné aucun plan alimentaire ni objectif chiffré : son rôle est de fournir la compréhension nécessaire pour aborder un accompagnement personnalisé — comme le protocole NAPSO™ — avec les bonnes attentes et les bons leviers en tête, plutôt qu'avec des idées reçues sur la seule volonté individuelle."
+      "Une collation à emporter, sans cuisson, pour les journées chargées entre deux rendez-vous.",
+      "Ingrédients (8 boules) : 100 g de pâte d'arachide pure · 50 g de noix de coco râpée (+ un peu pour l'enrobage) · 1 c. à soupe d'huile de coco fondue · 1 pincée de cannelle.",
+      "Préparation : mélangez tous les ingrédients jusqu'à obtenir une pâte homogène. Formez 8 petites boules. Roulez dans la noix de coco râpée. Placez au réfrigérateur 30 min avant de déguster."
     ],
     "takeaways": [
-      "Aucun levier isolé n'explique ni ne résout le surpoids à lui seul — c'est une interaction de systèmes.",
-      "Activité physique régulière, sommeil, gestion du stress et alimentation brute sont les leviers les plus soutenus scientifiquement.",
-      "Ce cours donne une compréhension de fond, pas un plan alimentaire — pour aborder un accompagnement personnalisé avec les bonnes attentes."
+      "Ces boules se conservent une semaine au frais dans une boîte hermétique.",
+      "Aucune cuisson nécessaire — prêtes en 15 minutes."
     ],
     "quiz": [
       {
-        "q": "Selon la conclusion de ce cours, le surpoids se résout principalement par :",
+        "q": "Combien de temps ces boules d'énergie se conservent-elles au frais ?",
         "options": [
-          "Un seul levier isolé, bien choisi",
-          "L'interaction de plusieurs leviers (sommeil, stress, activité, alimentation)",
-          "La seule volonté individuelle",
-          "Un régime unique universel"
+          "1 jour",
+          "Une semaine",
+          "Un mois",
+          "Elles ne se conservent pas"
         ],
         "correct": 1
-      },
+      }
+    ]
+  },
+  {
+    "title": "Mousse avocat-cacao",
+    "sub": "Dessert",
+    "img": "09-mousse-avocat.png",
+    "content": [
+      "Un dessert crémeux et gourmand, sans sucre ajouté, qui satisfait vraiment l'envie de quelque chose de doux.",
+      "Ingrédients (2 portions) : 1 avocat bien mûr · 2 c. à soupe de cacao amer en poudre · 3 c. à soupe de lait de coco · édulcorant naturel au goût (facultatif).",
+      "Préparation : écrasez ou mixez l'avocat jusqu'à texture lisse. Ajoutez cacao et lait de coco, mélangez bien. Ajustez avec un peu d'édulcorant si besoin. Réfrigérez 20 min avant de servir."
+    ],
+    "takeaways": [
+      "Un avocat bien mûr donne la texture mousseuse sans avoir besoin de crème.",
+      "Ce dessert se prépare en 10 minutes, sans cuisson."
+    ],
+    "quiz": [
       {
-        "q": "Ce cours a pour objectif de :",
+        "q": "Qu'est-ce qui donne sa texture mousseuse à ce dessert, sans crème ?",
         "options": [
-          "Fournir un plan alimentaire chiffré",
-          "Fournir une compréhension de fond pour un accompagnement personnalisé",
-          "Remplacer un avis médical",
-          "Vendre un produit unique"
+          "Le cacao",
+          "Un avocat bien mûr",
+          "Le lait de coco seul",
+          "L'édulcorant"
+        ],
+        "correct": 1
+      }
+    ]
+  },
+  {
+    "title": "Infusion citronnelle-gingembre",
+    "sub": "Boisson",
+    "img": "10-infusion.png",
+    "content": [
+      "Une boisson chaude ou froide, digestive et sans sucre, pour remplacer les boissons sucrées du quotidien.",
+      "Ingrédients (2 portions) : 2 tiges de citronnelle fraîche écrasées · 3 cm de gingembre frais en tranches · 1 litre d'eau · quelques gouttes de citron (facultatif).",
+      "Préparation : portez l'eau à ébullition avec citronnelle et gingembre. Laissez infuser à couvert 10 min hors du feu. Filtrez, ajoutez un peu de citron. Servez chaud ou glacé."
+    ],
+    "takeaways": [
+      "La meilleure alternative aux jus sucrés pour toute la famille.",
+      "Se prépare en 8 minutes et se conserve facilement au frais."
+    ],
+    "quiz": [
+      {
+        "q": "Cette infusion est présentée comme une bonne alternative à :",
+        "options": [
+          "L'eau plate",
+          "Les jus et boissons sucrées",
+          "Le café",
+          "Le lait"
+        ],
+        "correct": 1
+      }
+    ]
+  },
+  {
+    "title": "Sauces et condiments maison",
+    "sub": "Bases",
+    "img": "11-sauces.png",
+    "content": [
+      "Trois bases à préparer à l'avance pour relever vos plats toute la semaine, sans sucre caché ni additifs.",
+      "Vinaigrette citron-gingembre : 3 c. à soupe d'huile, jus d'1 citron, 1 c. à café de gingembre râpé, sel et poivre — mélangez dans un bocal fermé.",
+      "Sauce arachide légère (crudités) : 3 c. à soupe de pâte d'arachide pure délayée avec de l'eau tiède, un filet de citron, sel et piment au goût.",
+      "Condiment piment-gingembre : mixez 3 piments frais, 3 cm de gingembre, 1 gousse d'ail, un filet d'huile et une pincée de sel — se conserve une semaine au frais."
+    ],
+    "takeaways": [
+      "Préparer ces bases en une seule session fait gagner du temps toute la semaine.",
+      "Ces sauces maison évitent le sucre caché des sauces industrielles."
+    ],
+    "quiz": [
+      {
+        "q": "Quel est l'avantage principal de préparer ces sauces soi-même ?",
+        "options": [
+          "C'est plus cher",
+          "Éviter le sucre caché des sauces industrielles",
+          "Ça prend plus de temps chaque jour",
+          "Aucun avantage"
+        ],
+        "correct": 1
+      }
+    ]
+  },
+  {
+    "title": "Conclusion — liste de courses et planning",
+    "sub": "Pour aller plus loin",
+    "img": null,
+    "content": [
+      "Voici la liste complète des ingrédients du module, à emporter avec vous pour vos courses de la semaine : protéines (œufs, wagashi, kilishi, poulet, poisson), légumes (gboma, chou, poivron, tomate, concombre, oignon, avocat), matières grasses (huile de coco, d'arachide, d'olive), épicerie (pâte d'arachide pure, graines de courge, noix de coco râpée, cacao amer), aromates (ail, gingembre, citronnelle, piment, citron, cannelle).",
+      "Suggestion de planning pour une semaine type : alternez les deux petits-déjeuners, variez les 4 plats principaux sur le déjeuner et le dîner, gardez collations et dessert pour les petites faims. Préparez sauces et boules d'énergie en une seule session en début de semaine.",
+      "Ce module continue de s'enrichir avec le temps — retrouvez les prochaines recettes directement dans votre espace Gevlon. Un doute sur un ingrédient ? L'équipe Gevlon répond sur WhatsApp au 01 52 79 80 80."
+    ],
+    "takeaways": [
+      "Préparez sauces et collations en une seule session pour gagner du temps.",
+      "Ce module s'enrichira avec de nouvelles recettes au fil du temps."
+    ],
+    "quiz": [
+      {
+        "q": "Que recommande-t-on de préparer en une seule session en début de semaine ?",
+        "options": [
+          "Uniquement le dessert",
+          "Sauces et boules d'énergie",
+          "Rien en particulier",
+          "Seulement les infusions"
         ],
         "correct": 1
       }
@@ -719,8 +611,8 @@
   var API_BASE = 'https://gevlon-backend-production.up.railway.app';
   var urlParams = new URLSearchParams(location.search);
   var authToken = urlParams.get('token') || null;
-  var courseSlug = urlParams.get('slug') || 'surpoids-obesite-mode-de-vie';
-  var COURSE_TITLE = "Surpoids & Obésité : comprendre son mode de vie";
+  var courseSlug = urlParams.get('slug') || 'recettes-afroketo';
+  var COURSE_TITLE = "Recettes AfroKeto™ — module pratique";
 
   var progress = MODULES.map(function(){ return { done:false, score:0 }; });
   var currentIndex = 0;
@@ -728,7 +620,7 @@
 
   function renderSidebar(){
     var wrap = document.getElementById('sidebar');
-    var html = '<h4>Programme du cours</h4>';
+    var html = '<h4>Programme du module</h4>';
     MODULES.forEach(function(m, i){
       var cls = 'mod-item' + (i===currentIndex ? ' active' : '') + (progress[i].done ? ' done' : '');
       html += '<div class="'+cls+'" onclick="goTo('+i+')">'
@@ -764,12 +656,17 @@
     var html = '';
     html += '<span class="lesson-tag">Le\u00e7on '+(i+1)+' / '+MODULES.length+' \u00b7 '+m.sub+'</span>';
     html += '<h2>'+m.title+'</h2>';
+    if(m.img){
+      html += '<div class="lesson-image"><img src="'+m.img+'" alt="'+m.title+'" loading="lazy"></div>';
+    } else {
+      html += '<div class="lesson-image-empty"><div class="emoji">\uD83D\uDCD6</div>'+m.title+'</div>';
+    }
     html += '<div class="lesson-text">' + m.content.map(function(p){ return '<p>'+p+'</p>'; }).join('') + '</div>';
     if(m.takeaways.length){
       html += '<div class="takeaways"><h4>Points cl\u00e9s \u00e0 retenir</h4><ul>' + m.takeaways.map(function(t){ return '<li>'+t+'</li>'; }).join('') + '</ul></div>';
     }
     if(i===0){
-      html += '<div class="disclaimer">\u26a0\ufe0f Ce contenu est \u00e9ducatif et scientifique g\u00e9n\u00e9ral \u2014 il ne remplace pas un diagnostic ou un avis m\u00e9dical personnalis\u00e9. Consultez un professionnel de sant\u00e9 pour toute question li\u00e9e \u00e0 votre situation individuelle, en particulier en cas de pathologie existante.</div>';
+      html += '<div class="disclaimer">\u26a0\ufe0f Ce contenu est \u00e9ducatif et g\u00e9n\u00e9ral \u2014 il ne remplace pas un avis m\u00e9dical personnalis\u00e9. Consultez un professionnel de sant\u00e9 avant tout changement alimentaire important, en particulier en cas de diab\u00e8te, grossesse, allaitement ou maladie chronique.</div>';
     }
     html += '<div class="quiz" id="quizArea"><h4>Quiz du module</h4><div id="quizQuestions"></div>'
       + '<button class="btn-primary" id="quizSubmit" onclick="submitQuiz('+i+')">Valider mes r\u00e9ponses</button>'
@@ -834,11 +731,11 @@
     if(!allDone()){ return; }
     var wrap = document.getElementById('mainPanel');
     var today = new Date().toLocaleDateString('fr-FR', {year:'numeric', month:'long', day:'numeric'});
-    var certId = window.currentCertId || ('GEV-OBS-' + new Date().getFullYear() + '-' + Math.random().toString(36).slice(2,8).toUpperCase());
+    var certId = window.currentCertId || ('GEV-RCT-' + new Date().getFullYear() + '-' + Math.random().toString(36).slice(2,8).toUpperCase());
     window.currentCertId = certId;
     wrap.innerHTML =
       '<div class="cert-wrap">'
-      + '<span class="lesson-tag">Cours termin\u00e9</span>'
+      + '<span class="lesson-tag">Module termin\u00e9</span>'
       + '<h2>F\u00e9licitations !</h2>'
       + '<p style="color:var(--ink-soft);margin:8px 0 20px;">Entrez le nom \u00e0 afficher sur votre certificat :</p>'
       + '<input class="cert-name-input" id="certNameInput" placeholder="Votre nom complet" value="'+learnerName+'" oninput="learnerName=this.value; updateCertPreview();">'
@@ -846,14 +743,14 @@
       + '<img class="logo-img" src="'+GEVLON_LOGO+'">'
       + '<div class="h">Certificat de r\u00e9ussite</div>'
       + '<div class="name" id="certName">'+(learnerName || 'Votre nom')+'</div>'
-      + '<div class="course">a termin\u00e9 avec succ\u00e8s la formation<br><strong>'+COURSE_TITLE+'</strong></div>'
+      + '<div class="course">a termin\u00e9 avec succ\u00e8s le module<br><strong>'+COURSE_TITLE+'</strong></div>'
       + '<div class="meta">D\u00e9livr\u00e9 le '+today+' \u00b7 N\u00b0 '+certId+'</div>'
       + '<div class="cert-footer">'
       + '<div class="col"><b>GEVLON</b><br>Carr\u00e9 1052, Maison Gbedan, Qtier Tokpota<br>Porto-Novo / B\u00e9nin<br>N\u00b0 RCCM RB/PNO/23 B 4648 \u00b7 IFU 3202348309054<br>Email : contact@gevlon.com \u00b7 T\u00e9l : +229 52 79 80 80</div>'
       + '<div class="col" style="flex:0;text-align:center;"><div id="certQR"></div><div style="font-size:0.62rem;color:var(--ink-soft);margin-top:4px;">V\u00e9rifier</div></div>'
       + '</div>'
       + '</div>'
-      + '<div class="cert-actions"><button class="btn-primary" onclick="window.print()">\uD83D\uDDA8\uFE0F T\u00e9l\u00e9charger / imprimer le certificat</button> <a href="index.html'+(authToken? '?token='+encodeURIComponent(authToken):'')+'" class="btn-secondary" style="margin-left:10px;">\u2190 Retour \u00e0 l\u2019acad\u00e9mie</a></div>'
+      + '<div class="cert-actions"><button class="btn-primary" onclick="window.print()">\uD83D\uDDA8\uFE0F T\u00e9l\u00e9charger / imprimer le certificat</button> <a href="cours.html'+(authToken? '?token='+encodeURIComponent(authToken):'')+'" class="btn-secondary" style="margin-left:10px;">\u2190 Formation AfroKeto\u2122</a></div>'
       + '</div>';
     renderCertQR(certId, learnerName || 'Votre nom', today);
     saveProgressToServer();
@@ -861,7 +758,7 @@
 
   function renderCertQR(certId, name, dateStr){
     try{
-      var verifyUrl = location.origin + location.pathname.replace(/cours-obesite\.html.*$/,'') + 'verify.html'
+      var verifyUrl = location.origin + location.pathname.replace(/cours-recettes\.html.*$/,'') + 'verify.html'
         + '?id=' + encodeURIComponent(certId)
         + '&nom=' + encodeURIComponent(name)
         + '&date=' + encodeURIComponent(dateStr);

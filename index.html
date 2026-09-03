@@ -719,7 +719,39 @@
   </div>
 </section>
 
-<section class="section">
+<section class="section" id="partenaires">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="kicker">Réseau Gevlon</span>
+      <h2>Devenir partenaire Gevlon</h2>
+      <p>Pharmacie, Point Santé, professionnel de santé indépendant — rejoignez le réseau Gevlon et proposez nos programmes à vos patients.</p>
+    </div>
+    <div style="background:var(--white);border-radius:20px;padding:40px;border:1px solid rgba(0,48,143,0.08);max-width:640px;">
+      <label class="f-label">Nom de la structure</label>
+      <input class="f-input" id="partnerBusiness" type="text" placeholder="Ex : Pharmacie Agblangandan">
+      <label class="f-label">Type de structure</label>
+      <select class="f-input" id="partnerType">
+        <option value="Pharmacie">Pharmacie</option>
+        <option value="Point Santé">Point Santé</option>
+        <option value="Professionnel de santé indépendant">Professionnel de santé indépendant</option>
+        <option value="Autre">Autre</option>
+      </select>
+      <label class="f-label">Nom du contact</label>
+      <input class="f-input" id="partnerContact" type="text" placeholder="Votre nom">
+      <label class="f-label">Email</label>
+      <input class="f-input" id="partnerEmail" type="email" placeholder="vous@email.com">
+      <label class="f-label">Téléphone</label>
+      <input class="f-input" id="partnerPhone" type="tel" placeholder="+229 XX XX XX XX">
+      <label class="f-label">Ville</label>
+      <input class="f-input" id="partnerCity" type="text" placeholder="Porto-Novo">
+      <label class="f-label">Message (facultatif)</label>
+      <input class="f-input" id="partnerMessage" type="text" placeholder="Dites-nous en plus sur votre structure">
+      <button class="btn-primary" style="width:100%;margin-top:18px;" onclick="submitPartnerApplication()" id="partnerBtn">Envoyer ma candidature</button>
+      <div id="partnerMsg" style="margin-top:14px;font-size:0.85rem;text-align:center;"></div>
+    </div>
+  </div>
+</section>
+  <section class="section">
   <div class="wrap">
     <div class="final-cta" style="background:var(--navy-soft);color:var(--navy-deep);">
       <div>

@@ -1511,6 +1511,47 @@
 </script>
 
 <script>
+async function submitPartnerApplication(){
+  var business = document.getElementById('partnerBusiness').value.trim();
+  var type = document.getElementById('partnerType').value;
+  var contact = document.getElementById('partnerContact').value.trim();
+  var email = document.getElementById('partnerEmail').value.trim();
+  var phone = document.getElementById('partnerPhone').value.trim();
+  var city = document.getElementById('partnerCity').value.trim();
+  var message = document.getElementById('partnerMessage').value.trim();
+  var msgEl = document.getElementById('partnerMsg');
+  var btn = document.getElementById('partnerBtn');
+
+  if(!business || !contact || !email){
+    msgEl.textContent = 'Merci de renseigner au minimum le nom de la structure, le contact et l\'email.';
+    msgEl.style.color = '#A32D2D';
+    return;
+  }
+
+  btn.disabled = true; btn.textContent = 'Envoi…';
+  try{
+    var res = await fetch(API_BASE + '/api/partners/apply', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        businessName: business, partnerType: type, contactName: contact,
+        email: email, phone: phone, city: city, message: message, source: 'gevlon-site'
+      })
+    });
+    var data = await res.json();
+    if(!res.ok) throw new Error(data.error || 'Erreur, réessayez.');
+    msgEl.textContent = '✅ ' + data.message;
+    msgEl.style.color = '#1a7a3d';
+    ['partnerBusiness','partnerContact','partnerEmail','partnerPhone','partnerCity','partnerMessage'].forEach(function(id){
+      document.getElementById(id).value = '';
+    });
+  }catch(err){
+    msgEl.textContent = err.message || 'Erreur, réessayez.';
+    msgEl.style.color = '#A32D2D';
+  }finally{
+    btn.disabled = false; btn.textContent = 'Envoyer ma candidature';
+  }
+}  
 async function subscribeNewsletter(){
   var email = document.getElementById('newsletterEmail').value.trim();
   var msgEl = document.getElementById('newsletterMsg');
